@@ -1,0 +1,149 @@
+/* =========================
+   RESET BÁSICO
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+
+/* =========================
+   VARIÁVEIS
+   ========================= */
+
+:root {
+    --bg: #070a0f;
+    --bg-soft: #0c1118;
+
+    --panel: rgba(16, 23, 32, .78);
+    --panel-strong: #101720;
+
+    --line: rgba(151, 168, 189, .16);
+
+    --text: #edf3f8;
+    --muted: #8e9aaa;
+
+    --accent: #56e0c0;
+    --accent-2: #69a7ff;
+
+    --warning: #f0c674;
+    --danger: #ff7b7b;
+
+    --radius: 18px;
+}
+
+
+/* =========================
+   CONFIGURAÇÕES GERAIS
+   ========================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 80% 0%,
+            rgba(86, 224, 192, 0.08),
+            transparent 30rem
+        ),
+        radial-gradient(
+            circle at 10% 30%,
+            rgba(105, 167, 255, 0.06),
+            transparent 28rem
+        ),
+        linear-gradient(
+            180deg,
+            #070a0f 0%,
+            #080d13 45%,
+            #06090e 100%
+        );
+
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* Grade discreta no fundo */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    opacity: .18;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, .025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, .025) 1px,
+            transparent 1px
+        );
+
+    background-size: 42px 42px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 85%
+        );
+}
+
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+.navbar {
+    background: rgba(7, 10, 15, .72);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    letter-spacing: -.03em;
+}
+
+.brand-mark {
+    display: inline-grid;
+    place-items: center;
+
+    width: 34px;
+    height: 34px;
+
+    margin-right: 9px;
+
+    border: 1px solid rgba(86, 224, 192, .45);
+    border-radius: 9px;
+
+    color: var(--accent);
+
+    font: 700 .8rem "JetBrains Mono", monospace;
+}
+
+.nav-link {
+    color: #aab5c3 !important;
+    font-size: .88rem;
+    transition: color .2s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--text) !important;
+}
+
+
