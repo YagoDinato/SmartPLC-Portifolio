@@ -5,27 +5,28 @@
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-> **Case de Estudo & Demonstração Técnica:** Uma plataforma integradora que conecta automação industrial (OT), sistemas de comunicação/gateways e desenvolvimento web (IT) para monitoramento em tempo real através de um **Digital Twin (Gêmeo Digital)**.
+> **Case de Estudo & Demonstração Técnica:** Uma plataforma integradora que conecta automação industrial (OT), sistemas de comunicação/gateways e desenvolvimento web (IT) para monitorização em tempo real através de um **Digital Twin (Gêmeo Digital)**.
 
 ---
 
 ## 📌 Sobre o Projeto
 
-O **SmartPLC** foi desenvolvido para demonstrar a aplicação prática da **convergência entre OT (Operational Technology) e IT (Information Technology)**. Mais do que uma interface visual, o projeto abrange o fluxo completo de dados: desde o nível de controle e simulação do processo industrial até a camada de aplicação Web, onde métricas são consolidadas em dashboards dinâmicos.
+O **SmartPLC** foi desenvolvido para demonstrar a aplicação prática da **convergência entre OT (Operational Technology) e IT (Information Technology)**. Mais do que uma interface visual, o projeto abrange o fluxo completo de dados: desde o nível de controlo e simulação do processo industrial até à camada de aplicação Web, onde as métricas são consolidadas em dashboards dinâmicos.
 
 ---
 
 ## 🏗️ Arquitetura do Sistema
 
+```
 ┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
 │  TA / OT        │ ────> │  GW (Gateway)   │ ────> │  DATA           │ ────> │  IT (Web)       │
 │  Automação &    │       │  Node-RED       │       │  Chart.js /     │       │  Dashboard Web  │
 │  Simulação PLC  │       │  Comunicação    │       │  Tratamento     │       │  & Digital Twin │
 └─────────────────┘       └─────────────────┘       └─────────────────┘       └─────────────────┘
-
+```
 
 * **TA (Automação):** Dispositivos, sensores e atuações de campo.
-* **OT (Controle):** Lógica de controle e simulação do processo industrial.
+* **OT (Controlo):** Lógica de controlo e simulação do processo industrial.
 * **GW (Node-RED):** Gateway responsável por intermediar os dados entre os protocolos industriais e os serviços Web.
 * **IT (Web):** Aplicação frontend desenvolvida para consumo e exibição dos dados.
 * **DATA (Chart.js):** Renderização de gráficos dinâmicos e métricas de desempenho em tempo real.
@@ -40,7 +41,7 @@ O **SmartPLC** foi desenvolvido para demonstrar a aplicação prática da **conv
 3. **Automação Industrial e Simulação:** Modelagem de sinais e comportamentos de CLP/PLC.
 4. **Visualização e Atualização de Dados:** Dashboards dinâmicos em tempo real.
 5. **Comunicação entre Sistemas:** Arquitetura de fluxo de dados robusta e escalável.
-6. **Pensamento Sistêmico:** Visão ponta a ponta, do chão de fábrica até a tomada de decisão.
+6. **Pensamento Sistémico:** Visão ponta a ponta, do chão de fábrica até à tomada de decisão.
 7. **Conceitos de Indústria 4.0:** Digital Twin, IIoT e análise contínua de dados.
 
 ---
@@ -63,20 +64,30 @@ O **SmartPLC** foi desenvolvido para demonstrar a aplicação prática da **conv
 
 1. **Clonar o repositório:**
    ```bash
-   git clone [https://github.com/YagoDinato/SmartPLC-Portifolio.git](https://github.com/YagoDinato/SmartPLC-Portifolio.git)
-Navegar até a pasta do projeto:
+   git clone https://github.com/YagoDinato/SmartPLC-Portifolio.git
+   ```
 
-Bash
-cd SmartPLC-Portifolio
-Abrir a interface:
+2. **Navegar até à pasta do projeto:**
+   ```bash
+   cd SmartPLC-Portifolio
+   ```
 
-Abra o arquivo index.html no seu navegador ou utilize a extensão Live Server no VS Code.
+3. **Abrir a interface:**
+   * Abra o ficheiro `index.html` no seu navegador ou utilize a extensão **Live Server** no VS Code.
 
-👥 Equipe de Desenvolvimento
-Membro	Função	GitHub / Portfólio
-Yago Dinato	Desenvolvedor / Automação & IT	@YagoDinato
-Pedro M.	Desenvolvedor / Automação & IT	Portfólio
-Juan	Desenvolvedor / Automação & IT	Portfólio
-Ewerton	Desenvolvedor / Automação & IT	Portfólio
-📄 Licença
-Este projeto é um case de estudo e portfólio acadêmico/profissional. Todos os direitos reservados à equipe de desenvolvedores.
+---
+
+## 👥 Equipa de Desenvolvimento
+
+| Membro | Função | GitHub / Portfólio |
+| :--- | :--- | :--- |
+| **Yago Dinato** | Desenvolvedor / Automação & IT | [@YagoDinato](https://github.com/YagoDinato) |
+| **Pedro M.** | Desenvolvedor / Automação & IT | [Portfólio](#) |
+| **Juan** | Desenvolvedor / Automação & IT | [Portfólio](#) |
+| **Ewerton** | Desenvolvedor / Automação & IT | [Portfólio](#) |
+
+---
+
+## 📄 Licença
+
+Este projeto é um case de estudo e portfólio académico/profissional. Todos os direitos reservados à equipa de desenvolvedores.
