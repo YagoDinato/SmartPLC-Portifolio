@@ -1,0 +1,74 @@
+/* SmartPLC — malha de nível (hero asset)
+   Depende de ds/tokens.css (variáveis) e ds/bundle.css (Readout: .spc-readout).
+   Nenhum cálculo no CSS: posições e níveis são escritos pelo smartplc-loop.js. */
+
+.smartplc-loop { position: relative; width: 100%; color: var(--ink); }
+
+.spl-stage { position: relative; width: 100%; aspect-ratio: 720 / 800; }
+.smartplc-loop[data-layout="mobile"] .spl-stage { aspect-ratio: 580 / 800; } /* o SVG (slice) corta à direita */
+
+.spl-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; fill: none; }
+.spl-svg * { vector-effect: non-scaling-stroke; } /* traço na espessura do token em qualquer escala */
+
+/* composição por layout */
+.smartplc-loop[data-layout="desktop"] .spl-m,
+.smartplc-loop[data-layout="mobile"] .spl-d { display: none; }
+
+/* ---------- equipment-layer ---------- */
+.spl-wall       { fill: url(#spl-hatch); stroke: none; }
+.spl-hatch-line { stroke: var(--steel); stroke-width: 1; }
+.spl-outline    { stroke: var(--line); stroke-width: 1.5; }                         /* stroke-line */
+.spl-pipe       { stroke: var(--line); stroke-width: 2; }                           /* stroke-pipe */
+.spl-flow       { stroke: var(--liquid); stroke-width: 2; stroke-dasharray: 4 10; } /* material, como no Tank */
+.spl-probe      { stroke: var(--line); stroke-width: 1; }
+.spl-plc-body   { fill: var(--field); stroke: var(--line); stroke-width: 1.5; }
+.spl-led        { fill: var(--hairline-field); }
+.spl-wire       { stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 3; }    /* fiação de instrumento, como no Tank */
+.spl-tick-minor { stroke: var(--steel); stroke-width: 1; }
+.spl-tick-major { stroke: var(--line); stroke-width: 1; }
+
+/* ---------- process-layer ---------- */
+.spl-inflow   { stroke: var(--liquid); stroke-width: 2; }
+.spl-liquid   { fill: var(--liquid); }
+.spl-meniscus { stroke: var(--signal); stroke-width: 2; }   /* stroke-signal, sempre sobre liquid */
+.spl-leader   { stroke: var(--signal-ink); stroke-width: 1; }
+.spl-sp-line  { stroke: var(--setpoint); stroke-width: 1.5; stroke-dasharray: 6 4; }
+/* SP abaixo da PV: o trecho dentro do líquido troca para on-liquid para continuar legível */
+.spl-sp-in    { stroke: var(--on-liquid); display: none; }
+.smartplc-loop[data-sp-submerged="true"] .spl-sp-in { display: inline; }
+
+/* ---------- data-layer ---------- */
+.spl-data-path { stroke: var(--ink); stroke-width: 1; }
+.spl-active    { fill: var(--signal); }                     /* LED de varredura, sobre field */
+.spl-pulse     { fill: var(--signal); stroke: var(--on-signal); stroke-width: 1.5; }
+
+/* ---------- ui-layer ---------- */
+.spl-ui { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+.spl-at { position: absolute; white-space: nowrap; }
+
+.spl-tag,
+.spl-plc-k   { font: var(--text-label); letter-spacing: 0.08em; text-transform: uppercase; }
+.spl-tag     { color: var(--ink); transform: translateY(-50%); }
+.spl-plc-k   { color: var(--on-field); }
+.spl-plc-sub { font: var(--text-micro); letter-spacing: 0.04em; color: var(--on-field-muted); }
+.spl-scale-n { font: var(--text-micro); letter-spacing: 0.04em; font-variant-numeric: tabular-nums; color: var(--ink-muted); transform: translate(-100%, -50%); }
+
+.spl-sp-float { transform: translateY(-100%) translateY(-6px); } /* acima da linha SP */
+.spl-pv-float { transform: translateY(-10px); }                  /* valor alinhado ao menisco */
+.spl-sp-float .spc-readout,
+.spl-pv-float .spc-readout { row-gap: 0; }
+
+/* mobile: leituras em linha abaixo do tanque (07-mobile) */
+.spl-readouts { display: flex; gap: 32px; padding-top: 16px; border-top: 1px solid var(--hairline); }
+
+/* ---------- sem JavaScript, em tela estreita ----------
+   O JS marca data-ready e escolhe o layout pela largura do componente.
+   Sem JS: mantém o desenho desktop inteiro (escalado) e troca os valores
+   flutuantes pela linha de leituras, que não colide em telas pequenas. */
+@media (max-width: 640px) {
+  .smartplc-loop:not([data-ready]) .spl-sp-float,
+  .smartplc-loop:not([data-ready]) .spl-pv-float,
+  .smartplc-loop:not([data-ready]) .spl-scale-n,
+  .smartplc-loop:not([data-ready]) .spl-plc-sub { display: none; }
+  .smartplc-loop:not([data-ready]) .spl-readouts.spl-m { display: flex; }
+}

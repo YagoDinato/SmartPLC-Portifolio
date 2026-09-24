@@ -1,0 +1,602 @@
+/* SmartPLC — página em HTML/CSS/JS puro. Usa css/tokens.css e css/bundle.css
+   como fonte de cor/tipografia. */
+
+/* v1 original: Space Grotesk (display) + IBM Plex Sans (texto). A v2-direcao
+   tinha proposto Barlow/Barlow Condensed; o Juan pediu a fonte de volta
+   (2026-09-23) — registrado em guidelines/10-decisoes.md. */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/space-grotesk-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-sans-400.woff2") format("woff2");
+}
+@font-face {
+  /* O arquivo latin de peso 500 servido pelo Google Fonts é byte a byte
+     idêntico ao de 400 nesta versão da família — não há um 500 real
+     disponível. Registrado assim em vez de faltar o glifo/peso por completo:
+     texto "500" renderiza no mesmo peso do 400 (sem negrito sintético). */
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-sans-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-500.woff2") format("woff2");
+}
+
+:root {
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+
+  /* Escala tipográfica — 5 degraus da v2-direcao.md ("Cinco estilos: Cartaz
+     clamp(96,22vw,360) · Display 56 · Texto 18 · Dado mono 14 · Micro 11").
+     Antes a página misturava a escala da v1 (display-l 72/heading 40,
+     lead 20/body 16, mono 13/12) — 8 degraus, 4 deles espremidos entre
+     11–16px. Consolidado em 5.
+
+     --text-cartaz recalibrado (2026-09-23) na volta para Space Grotesk: o
+     teto 22vw/360px da v2 foi medido para a Barlow Condensed. Space Grotesk
+     não é condensada — "interface" (a palavra mais longa) precisava de até
+     1349px de largura a 316.8px de corpo, estourando o container de
+     ~1104px sem quebra de linha possível (é uma palavra só). Medido por
+     busca binária: max ~259px pra "interface" caber. 16vw/230px fica com
+     margem de segurança em qualquer largura de viewport. */
+  --text-cartaz: clamp(72px, 16vw, 230px);
+  --text-display: clamp(40px, 5.5vw, 64px);
+  --text-corpo: 18px;
+  --text-dado: 14px;
+  --text-micro: 11px;
+
+  /* Espaçamento entre seções — bem mais compacto do que os tokens de
+     "silêncio editorial" do v1/v2; o objetivo aqui é a página parecer viva,
+     não vazia. */
+  --gap-section: 56px;
+  --gap-section-lg: 88px;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  background: var(--paper);
+  /* scroll-behavior: smooth foi removido de propósito — não há âncoras na
+     página, e ele atrasa a posição real de scroll atrás da animação do
+     navegador, o que desalinha as animações ligadas ao scroll (scrub). */
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  /* Palavras-tanque no Space Grotesk em ~316px com letter-spacing negativo
+     geram "ink overflow" de glifo (a tinta desenhada além da largura de
+     avanço do caractere) — nenhuma caixa CSS ultrapassa a viewport, mas o
+     scrollWidth do documento conta esse desenho e cria uma barra horizontal
+     fantasma. Trava aqui; nada disso é visível, é só alguns px de
+     antialiasing. */
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+p, dd { margin: 0; }
+h1, h2, h3 { margin: 0; }
+ul, ol, dl { margin: 0; padding: 0; }
+
+.muted { color: var(--ink-muted); }
+.spc-field .muted { color: var(--on-field-muted); }
+.todo { max-width: 44ch; }
+
+/* Consolidação da escala mono: v1 tinha 3 degraus (label 12 / code 13 /
+   micro 11); a v2 funde rótulo e dado em um só ("Dado mono 14"), micro
+   fica só para escala do tanque e timestamps. */
+.label, .code { font-size: var(--text-dado); }
+.code { line-height: 22px; }
+.micro { font-size: var(--text-micro); }
+
+/* Texto corrido: v1 tinha lead 20 e body 16; a v2 funde em "Texto 18". */
+.body, .lead { font-size: var(--text-corpo); line-height: 1.6; }
+
+.wrap {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+@media (min-width: 900px) {
+  .wrap { padding-inline: 48px; }
+}
+
+section {
+  padding-top: var(--gap-section);
+}
+@media (min-width: 900px) {
+  section { padding-top: var(--gap-section-lg); }
+}
+.final {
+  padding-bottom: var(--gap-section);
+}
+@media (min-width: 900px) {
+  .final { padding-bottom: var(--gap-section-lg); }
+}
+
+/* ---- Hero (Cartaz) ----
+   Ordem do DOM = ordem mobile: marca → headline → texto → loop → links.
+   O grid de 12 colunas (guidelines/02-grid.md) só reposiciona no desktop. */
+.hero { padding-top: 24px; }
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.hero__brand { display: inline-block; width: max-content; }
+.hero__brand img { height: 40px; width: auto; }
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(44px, 9vw, 64px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.hero__lead {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  line-height: 32px;
+  color: var(--ink-muted);
+  max-width: 44ch;
+}
+
+/* align-items: os .spc-link têm border-bottom; esticados pela altura da
+   linha do grid, a sublinha descolava do texto. */
+.hero__links { display: flex; gap: 24px; align-items: flex-start; }
+
+@media (max-width: 639px) {
+  /* margem de 16 px no Hero (mobile) */
+  .hero .wrap, .wrap.hero__grid { padding-inline: 16px; }
+}
+
+@media (min-width: 1024px) {
+  .hero { padding-top: 32px; }
+  .hero__grid {
+    /* Sai da caixa de 1200 do .wrap e encosta na margem direita da
+       viewport: o componente troca sozinho para a composição condensada
+       quando tem ≤ 640 px, e num slot de 6 colunas dentro de 1200 ele
+       ficaria com 540 px — perderia escala, PV e SP flutuantes.
+       A borda esquerda continua alinhada com as outras seções. */
+    max-width: none;
+    margin-inline: 0;
+    padding-left: max(48px, calc((100vw - 1200px) / 2 + 48px));
+    padding-right: 0;
+    grid-template-columns: repeat(12, 1fr);
+    /* As linhas 1fr nas pontas centram o bloco editorial verticalmente sem
+       esticar o espaço entre título, texto e links — o loop atravessa todas
+       as linhas e, com linhas `auto`, distribuiria a própria altura entre
+       elas, afastando o editorial. */
+    grid-template-rows: 1fr auto auto auto auto 1fr;
+    column-gap: 24px;
+    row-gap: 0;
+    min-height: calc(100svh - 32px);
+  }
+  /* editorial: colunas 1–5, centrado na vertical */
+  .hero__brand  { grid-column: 1 / 6; grid-row: 2; margin-bottom: 40px; }
+  .hero__title  { grid-column: 1 / 6; grid-row: 3; font-size: clamp(52px, 4.2vw, 76px); }
+  .hero__lead   { grid-column: 1 / 6; grid-row: 4; margin-top: 24px; }
+  .hero__links  { grid-column: 1 / 6; grid-row: 5; margin-top: 32px; align-self: start; }
+  /* loop: coluna 7–12 (a 6 é vão), centralizado no próprio espaço em vez de
+     colado na borda — menor e mais perto do centro, como pedido. A largura
+     ainda passa de 640px (composição desktop do componente se mantém). */
+  .hero__visual {
+    grid-column: 7 / 13;
+    grid-row: 1 / 7;
+    align-self: center;
+    justify-self: center;
+    /* Largura própria (não 100% do track): garante o tamanho não importa a
+       largura do track do grid.
+       2026-09-23: decisão explícita de cruzar o limiar de 640px de
+       propósito — o componente troca sozinho para a composição condensada
+       (tanque + LT + CLP, sem tubulação/régua/PV-SP flutuantes) em vez do
+       P&ID completo. Registrado em guidelines/10-decisoes.md. */
+    width: clamp(420px, 32vw, 520px);
+    max-width: 100%;
+  }
+}
+
+.final .todo { margin-top: 6px; }
+
+/* ---- Régua de nível (fixa, desktop) ---- */
+.page-ruler { display: none; }
+@media (min-width: 1024px) {
+  .page-ruler {
+    display: block;
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: min(56vh, 520px);
+    width: 32px;
+    z-index: 30;
+    pointer-events: none;
+  }
+  .page-ruler__track {
+    position: relative;
+    height: 100%;
+    width: 1px;
+    margin-inline: auto;
+    background: var(--hairline);
+  }
+  .page-ruler__tick {
+    position: absolute;
+    left: 50%;
+    top: calc(var(--at) * 1%);
+    transform: translate(-50%, -50%);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    background: var(--paper);
+    padding: 2px 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  /* indicador lime: posição em JS acompanha o progresso da rolagem da
+     página inteira (top 0% → 100%). Sem GSAP/reduced motion, fica no
+     topo — ainda é a régua, só não anima. */
+  .page-ruler__dot {
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--signal);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 3px var(--paper);
+  }
+}
+
+/* ---- Palavra-tanque: duas camadas de texto + clip-path ---- */
+.tank-word {
+  position: relative;
+  display: block;
+  isolation: isolate;
+  /* line-height 0.86 não reserva espaço para descendentes (g, p...);
+     sem isso a letra invade o texto seguinte. */
+  padding-bottom: calc(var(--text-cartaz) * 0.12);
+}
+.tank-word--malha {
+  padding-bottom: calc(clamp(48px, 10vw, 110px) * 0.12);
+}
+.tank-word__word {
+  display: block;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-cartaz);
+  font-weight: 500;
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+}
+.tank-word__word--ink { color: var(--ink); }
+.tank-word__word--liquid {
+  position: absolute;
+  inset: 0;
+  color: var(--liquid);
+  clip-path: inset(calc(100% - var(--level) * 1%) 0 0 0);
+  pointer-events: none;
+}
+/* Menisco: faixa de 2px na superfície do líquido, recortada nas próprias
+   letras. Antes era uma barra atravessando o bloco inteiro, o que punha
+   lime sobre o papel nos vãos entre as letras — proibido pelo CLAUDE.md
+   ("lime nunca como traço fino sobre paper"). Assim o lime só encosta em
+   glifo, e uma palavra vazia (nível 0) não mostra menisco nenhum, que é o
+   correto: sem líquido não há superfície. */
+.tank-word__word--meniscus {
+  position: absolute;
+  inset: 0;
+  color: var(--signal);
+  clip-path: inset(
+    calc(100% - var(--level) * 1%) 0 calc(var(--level) * 1% - 2px) 0
+  );
+  pointer-events: none;
+}
+/* Em field o líquido já é o próprio signal — um menisco lime sobre lime
+   não diz nada. */
+.tank-word--field .tank-word__word--meniscus { display: none; }
+.tank-word::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: calc(100% - var(--sp, 70) * 1%);
+  border-top: 2px dashed var(--setpoint);
+  pointer-events: none;
+}
+.tank-word--no-sp::after { display: none; }
+.tank-word--field .tank-word__word--ink { color: var(--on-field); }
+.tank-word--field .tank-word__word--liquid { color: var(--signal); }
+
+/* "bancada" — nível fixo 0, "só contorno" (v2-direcao.md). Sem líquido nem
+   menisco, a palavra ficava muda; o contorno devolve peso visual sem usar
+   lime (que aqui seria dado que não existe). */
+.tank-word--outline .tank-word__word--ink {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--line);
+}
+@supports not (-webkit-text-stroke: 1px black) {
+  .tank-word--outline .tank-word__word--ink { color: var(--line); }
+}
+
+/* EXCEÇÃO registrada em guidelines/10-decisoes.md (2026-09-23): o Juan
+   pediu de volta a linha lime cortando "bancada" mesmo sem líquido —
+   contraria "lime nunca como traço fino sobre paper" do CLAUDE.md por
+   decisão consciente. Traço decorativo fixo, não ligado a --level (não há
+   dado real aqui: a bancada está vazia). */
+.tank-word--cut::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 45%;
+  height: 2px;
+  background: var(--signal);
+  pointer-events: none;
+}
+
+/* ---- Problema ---- */
+.frase { font-size: var(--text-display); max-width: 26ch; }
+.frase--end { margin-top: 8px; }
+.notas {
+  list-style: none;
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 640px) {
+  .notas { grid-template-columns: repeat(3, 1fr); }
+}
+.nota { padding-top: 8px; border-top: 1px solid var(--hairline); }
+@media (min-width: 640px) {
+  .nota { border-top: none; border-left: 1px solid var(--hairline); padding: 0 0 0 12px; }
+  .nota:first-child { border-left: none; padding-left: 0; }
+}
+.nota p:first-child { margin-bottom: 4px; }
+.nota__big { display: none; }
+
+/* ---- Revelação A/B/C pinada (só com JS + sem reduced motion; ver
+   script.js). Sem JS: .notas continua no grid normal acima, legível. ---- */
+#abc-pin.js-abc {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+}
+#abc-pin.js-abc .notas {
+  display: block;
+  position: relative;
+  height: 100%;
+  margin-top: 0;
+}
+#abc-pin.js-abc .nota {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  opacity: 0;
+}
+#abc-pin.js-abc .nota__big {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(160px, 24vw, 340px);
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+  color: var(--signal-ink);
+  margin: 0 0 16px;
+  border-bottom: 3px solid var(--signal);
+  width: max-content;
+  padding-bottom: 8px;
+}
+#abc-pin.js-abc .nota .label { font-size: var(--text-dado); }
+#abc-pin.js-abc .nota .body { font-size: var(--text-corpo); max-width: 44ch; }
+
+/* ---- Malha ---- */
+.malha { border-top: 1px solid var(--hairline); }
+.malha__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+@media (min-width: 900px) {
+  .malha__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 4fr); gap: 32px; }
+}
+.malha__text .heading { font-size: var(--text-display); margin-top: 8px; max-width: 16ch; }
+.glossary { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+.malha__text > p.body { margin-top: 16px; max-width: 44ch; }
+
+.malha__process { display: flex; flex-direction: column; gap: 12px; }
+.malha__tankword-wrap { display: flex; align-items: flex-end; gap: 12px; }
+.tank-word--malha { flex: 1; min-width: 0; }
+.tank-word--malha .tank-word__word { font-size: clamp(48px, 10vw, 110px); }
+.malha__slider-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+.malha__slider { width: 140px; touch-action: none; }
+@media (min-width: 900px) {
+  .malha__slider { writing-mode: vertical-lr; direction: rtl; width: 24px; height: 140px; }
+}
+
+.spc-tank .liquid { fill: var(--liquid); }
+.tank-legend { overflow: visible; }
+
+/* ---- Do sensor até a tela (seis formas) ----
+   Diagrama único: um trilho com 6 nós. Mobile: trilho vertical à esquerda,
+   nós empilhados, sem pin (v2). Desktop (≥1024): trilho horizontal, seção
+   pinada enquanto o traço lime percorre os nós (script.js). */
+.seis-formas .heading { font-size: var(--text-display); margin: 8px 0 40px; }
+
+.diagram { position: relative; padding-top: 8px; }
+
+.diagram__rail {
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--hairline);
+}
+.diagram__trace {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0%;
+  background: var(--signal);
+}
+
+.diagram__nodes {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  padding-left: 28px;
+  min-height: 44px;
+}
+/* "Slide em foco": o nó ativo aumenta de verdade (não um scale sutil) e
+   vem pra frente dos vizinhos — texto maior e mais nítido, não só mais
+   opaco. Fundo papel por baixo porque o zoom estoura a própria coluna. */
+.node.is-focus {
+  z-index: 5;
+  background: var(--paper);
+  padding: 12px;
+  margin: -12px;
+}
+.node::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 2px solid var(--line);
+  transition: background 0.2s, border-color 0.2s;
+}
+.node.is-active::before { background: var(--signal); border-color: var(--signal); }
+
+.node__tag { margin: 0 0 8px; }
+.node__value { margin: 4px 0; word-break: break-word; }
+.node__layer { margin: 4px 0 0; }
+.station__note { text-transform: none; letter-spacing: 0; }
+
+.bar { width: 14px; height: 32px; border: 1.5px solid var(--line); display: flex; align-items: flex-end; margin: 4px 0; }
+.bar__fill { width: 100%; background: var(--liquid); border-top: 2px solid var(--signal); }
+
+@media (min-width: 1024px) {
+  .diagram__rail {
+    left: 0;
+    right: 0;
+    top: 22px;
+    bottom: auto;
+    height: 2px;
+    width: auto;
+  }
+  .diagram__trace { height: 100%; width: 0%; }
+
+  .diagram__nodes {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .node {
+    flex: 1;
+    min-width: 0;
+    padding-left: 0;
+    padding-top: 32px;
+    /* Origem do scale por posição: o 1º nó cresce a partir da própria
+       borda esquerda (senão metade do zoom saía da tela pela esquerda),
+       o último a partir da direita, os do meio a partir do centro. */
+    transform-origin: 50% 0%;
+  }
+  .node:first-child { transform-origin: 0% 0%; }
+  .node:last-child { transform-origin: 100% 0%; }
+  .node::before {
+    left: 50%;
+    top: 14px;
+    transform: translateX(-50%);
+  }
+  .bar { margin-inline: auto; }
+}
+
+#trend-chart, #final-chart { display: block; }
+.chart-reveal { display: block; }
+
+.team-link { color: inherit; text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: 3px; }
+.team-link:hover { text-decoration-color: currentColor; }
+
+/* ---- Ficha técnica ---- */
+.ficha {
+  border-top: 1px solid var(--hairline);
+  padding-bottom: var(--gap-section);
+}
+@media (min-width: 900px) {
+  .ficha { padding-bottom: var(--gap-section-lg); }
+}
+.ficha h2 { font-size: var(--text-display); margin: 8px 0 40px; max-width: 22ch; }
+.colofao {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--hairline);
+}
+@media (min-width: 640px) {
+  .colofao { grid-template-columns: repeat(4, 1fr); column-gap: 24px; }
+}
+.colofao__item dt { margin-bottom: 8px; }
+.colofao__item dd { color: var(--ink-muted); }
+.ficha__cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-top: 40px;
+}
+@media (min-width: 640px) {
+  .ficha__cols { grid-template-columns: 1fr 1fr; }
+}
+.plain-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.plain-list--num { list-style: decimal; padding-left: 20px; }
+.plain-list--num li { padding-left: 4px; }
+
+/* ---- Final ---- */
+.tank-word--field { margin-top: 16px; }
+.arrival { display: flex; align-items: center; gap: 12px; margin-top: 32px; }
+.final-links { display: flex; flex-direction: column; gap: 8px; margin-top: 32px; max-width: 360px; }
+@media (min-width: 640px) { .final-links { flex-direction: row; } }

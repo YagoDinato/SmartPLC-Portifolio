@@ -1,712 +1,327 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartPLC</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartPLC — Automação que você consegue enxergar.</title>
+  <meta name="description" content="SmartPLC — automação que você consegue enxergar." />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/bundle.css" />
+  <link rel="stylesheet" href="css/smartplc-loop.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
-    <!--NAVBAR-->
-    <header class="custom-navbar">
-        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Navegação principal">
-            <div class="container py-2">
 
-                <a class="navbar-brand text-light d-flex align-items-center" href="#inicio">
-                    <span class="brand-mark">SP</span>
-                    SmartPLC
-                </a>
+  <!-- 01 · HERO (Cartaz)
+       EXCEÇÃO REGISTRADA À v2-direcao.md: a v2 define a seção 1 como
+       "Cartaz sem diagrama". Decisão do Juan (2026-09-23): o Hero passa a
+       ter o SmartPLC Loop no lado visual. A exceção vale só para o Hero —
+       o resto da v2 continua valendo (Barlow/Barlow Condensed + IBM Plex
+       Mono, sem badges, lime só em dado vivo, SP tracejada fixa).
+       Ordem do DOM = ordem mobile (marca → headline → texto → loop → links).
+       No desktop o grid reposiciona; leitura e tab seguem o DOM. -->
+  <section class="hero" id="hero">
+    <div class="wrap hero__grid">
+      <a class="hero__brand" href="#hero" aria-label="SmartPLC — início">
+        <img src="images/smartplc-logo.svg" alt="SmartPLC" width="146" height="28" />
+      </a>
 
-                <!-- Botão para abrir o menu no celular -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-                    aria-controls="mainNav" aria-expanded="false" aria-label="Alternar navegação">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+      <h1 class="hero__title">Automação que você consegue enxergar.</h1>
 
-                <div class="collapse navbar-collapse" id="mainNav">
-                    <ul class="navbar-nav ms-auto gap-lg-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#projeto">Projeto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#arquitetura">Arquitetura</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#tecnologias">Tecnologias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#competencias">Competências</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contato">Contato</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+      <p class="hero__lead">
+        Uma malha de nível simulada conectando automação industrial e software.
+      </p>
 
-    <main>
-        <!-- Parte inicio -->
-        <section id="inicio" class="min-vh-100 d-flex align-items-center py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10">
-                        <h1 class="display-1 fw-bold text-light">
-                            SmartPLC Industrial:
-                            <br>
-                            <span class="text-info">
-                                Controle e Supervisão
-                            </span>
-                            de uma Malha de Vazão
-                        </h1>
+      <div class="hero__visual">
+        <!-- Markup do componente "malha de nível" (css/smartplc-loop.css +
+             js/smartplc-loop.js fazem o cálculo/layout). -->
+        <div class="smartplc-loop" data-layout="desktop" data-pv="64.7" data-sp="70.0" data-band="10" data-sp-submerged="false" role="img" aria-label="Malha de nível: PV 64.7 %, SP 70.0 %">
+        <div class="spl-stage">
+        <svg class="spl-svg" viewBox="0 0 720 800" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false">
+        <defs><pattern id="spl-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="spl-hatch-line" d="M0 0V5"></path></pattern></defs>
+        <g class="spl-equipment-layer">
+          <g class="spl-scale"><path class="spl-tick-minor" d="M136 200V680M130 656H136M130 632H136M130 608H136M130 584H136M130 536H136M130 512H136M130 488H136M130 464H136M130 416H136M130 392H136M130 368H136M130 344H136M130 296H136M130 272H136M130 248H136M130 224H136"></path><path class="spl-tick-major" d="M124 680H136M124 560H136M124 440H136M124 320H136M124 200H136"></path></g>
+          <g class="spl-tank">
+            <path class="spl-wall" fill-rule="evenodd" d="M142 152H398V688H142Z M150 160H390V680H150Z"></path>
+            <rect class="spl-outline" x="142" y="152" width="256" height="536"></rect>
+            <rect class="spl-outline" x="150" y="160" width="240" height="520"></rect>
+          </g>
+          <g class="spl-pipes">
+            <path class="spl-pipe" d="M0 100H52M76 100H190V152"></path><path class="spl-flow" d="M0 100H52M76 100H190V152"></path>
+            <path class="spl-pipe" d="M270 688V736H720"></path><path class="spl-flow" d="M270 688V736H720"></path>
+          </g>
+          <g class="spl-valve"><path class="spl-outline" d="M52 90L76 110V90L52 110Z"></path><path class="spl-outline" d="M64 100V80"></path><path class="spl-outline" d="M52 80A12 12 0 0 1 76 80Z"></path></g>
+          <g class="spl-sensor"><circle class="spl-outline" cx="350" cy="118" r="16"></circle><path class="spl-outline" d="M350 134V152"></path><path class="spl-probe" d="M350 160V664"></path></g>
+          <g class="spl-plc spl-d"><rect class="spl-plc-body" x="560" y="470" width="80" height="150"></rect><rect class="spl-led" x="582" y="600" width="4" height="4"></rect><rect class="spl-led" x="592" y="600" width="4" height="4"></rect><rect class="spl-led" x="602" y="600" width="4" height="4"></rect><rect class="spl-led" x="612" y="600" width="4" height="4"></rect><rect class="spl-led" x="622" y="600" width="4" height="4"></rect></g>
+          <g class="spl-plc spl-m"><rect class="spl-plc-body" x="412" y="296" width="88" height="76"></rect><rect class="spl-led" x="430" y="356" width="4" height="4"></rect><rect class="spl-led" x="440" y="356" width="4" height="4"></rect><rect class="spl-led" x="450" y="356" width="4" height="4"></rect></g>
+          <g class="spl-signal-wires spl-d"><path class="spl-wire" d="M350 102V80H590V470"></path><path class="spl-wire" d="M624 470V56H64V68"></path></g>
+          <g class="spl-signal-wires spl-m"><path class="spl-wire" d="M350 102V84H466V296"></path></g>
+        </g>
+        <g class="spl-process-layer">
+          <path class="spl-inflow" d="M190 160V680"></path>
+          <rect class="spl-liquid" x="150.75" y="369.44" width="238.5" height="310.56"></rect>
+          <g class="spl-pv-track" transform="translate(0 -310.56)"><path class="spl-meniscus" d="M151 681H389"></path><path class="spl-leader spl-d" d="M398 680H410"></path></g>
+          <g class="spl-sp-track" transform="translate(0 -336.00)"><path class="spl-sp-line" d="M0 680H398"></path><path class="spl-sp-line spl-sp-in" d="M151 680H389"></path></g>
+        </g>
+        <g class="spl-data-layer">
+          <g class="spl-d"><path class="spl-data-path" d="M640 545H720"></path><rect class="spl-active" x="572" y="600" width="4" height="4"></rect>
+            <g class="spl-data-pulses"><rect class="spl-pulse" x="466" y="76" width="8" height="8" rx="2"></rect><rect class="spl-pulse" x="586" y="296" width="8" height="8" rx="2"></rect><rect class="spl-pulse" x="676" y="541" width="8" height="8" rx="2"></rect></g></g>
+          <g class="spl-m"><path class="spl-data-path" d="M500 334H580"></path><rect class="spl-active" x="420" y="356" width="4" height="4"></rect>
+            <g class="spl-data-pulses"><rect class="spl-pulse" x="462" y="186" width="8" height="8" rx="2"></rect><rect class="spl-pulse" x="532" y="330" width="8" height="8" rx="2"></rect></g></g>
+        </g>
+        </svg>
+        <div class="spl-ui"><span class="spl-at spl-scale-n spl-d" data-x="118" data-y="680" style="left: 16.389%; top: 85.000%;">0</span>
+        <span class="spl-at spl-scale-n spl-d" data-x="118" data-y="560" style="left: 16.389%; top: 70.000%;">25</span>
+        <span class="spl-at spl-scale-n spl-d" data-x="118" data-y="440" style="left: 16.389%; top: 55.000%;">50</span>
+        <span class="spl-at spl-scale-n spl-d" data-x="118" data-y="320" style="left: 16.389%; top: 40.000%;">75</span>
+        <span class="spl-at spl-scale-n spl-d" data-x="118" data-y="200" style="left: 16.389%; top: 25.000%;">100</span>
+        <span class="spl-at spl-tag" data-x="84" data-y="80" style="left: 11.667%; top: 10.000%;">FV-101</span>
+        <span class="spl-at spl-tag" data-x="374" data-y="118" style="left: 51.944%; top: 14.750%;">LT-101</span>
+        <span class="spl-at spl-plc-k spl-d" data-x="570" data-y="480" style="left: 79.167%; top: 60.000%;">CLP</span>
+        <span class="spl-at spl-plc-sub spl-d" data-x="570" data-y="498" style="left: 79.167%; top: 62.250%;">PLCSIM</span>
+        <span class="spl-at spl-plc-k spl-m" data-x="420" data-y="304" style="left: 58.333%; top: 38.000%;">CLP</span>
+        <span class="spl-at spl-plc-sub spl-m" data-x="420" data-y="330" style="left: 58.333%; top: 41.250%;">PLCSIM</span>
+        <div class="spl-at spl-sp-float spl-d" data-x="0" style="left: 0%; top: 43.000%;"><div class="spc-readout sp is-sm"><span class="k">SP</span><span class="v" data-sp="">70.0</span><span class="u">%</span></div></div>
+        <div class="spl-at spl-pv-float spl-d" data-x="414" style="left: 57.500%; top: 46.180%;"><div class="spc-readout pv is-sm"><span class="k">PV</span><span class="v" data-pv="">64.7</span><span class="u">%</span><span class="alm" hidden="">DESVIO</span></div></div></div>
+        </div>
+        <div class="spl-readouts spl-m"><div class="spc-readout sp is-sm"><span class="k">SP</span><span class="v" data-sp="">70.0</span><span class="u">%</span></div><div class="spc-readout pv is-sm"><span class="k">PV</span><span class="v" data-pv="">64.7</span><span class="u">%</span><span class="alm" hidden="">DESVIO</span></div></div>
+        </div>
+      </div>
 
-                        <p class="lead text-white-50 mt-4">
-                            Uma aplicação experimental que conecta automação,
-                            integração de dados e visualização Web — combinando
-                            <strong class="text-light">
-                                TIA Portal + Node-RED + Java + MySQL
-                            </strong>
-                        </p>
+      <div class="hero__links">
+        <a class="spc-link" href="https://github.com/YagoDinato/SmartPLC-Portifolio" target="_blank" rel="noopener">GitHub</a>
+        <a class="spc-link" href="https://yagodinato.github.io/SmartPLC-Portifolio/" target="_blank" rel="noopener">Projeto</a>
+      </div>
+    </div>
+  </section>
 
-                        <div class="d-flex flex-wrap gap-3 mt-4">
-                            <a href="https://github.com" target="_blank" class="btn btn-info btn-lg">
-                                Ver no GitHub
-                            </a>
+  <!-- 02 · PROBLEMA -->
+  <section class="problema">
+    <div class="wrap">
+      <p class="frase display-l">Testar automação não deveria exigir uma</p>
+      <div class="tank-word tank-word--no-sp tank-word--outline tank-word--cut" id="tank-bancada" style="--level:0">
+        <h1 class="tank-word__word tank-word__word--ink">bancada</h1>
+        <h1 class="tank-word__word tank-word__word--liquid" aria-hidden="true">bancada</h1>
+        <h1 class="tank-word__word tank-word__word--meniscus" aria-hidden="true">bancada</h1>
+      </div>
+      <p class="frase frase--end display-l">industrial inteira.</p>
 
-                            <a href="#arquitetura" class="btn btn-outline-light btn-lg">
-                                Ver arquitetura
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Sem JS / prefers-reduced-motion: .notas fica na grade normal,
+           empilhada e legível (fallback). Com JS, script.js troca para a
+           revelação grande pinada (id="abc-pin", classe .js-abc). -->
+      <div id="abc-pin">
+        <ul class="notas">
+          <li class="nota" data-letter="A">
+            <span class="nota__big" aria-hidden="true">A</span>
+            <p class="label">A — CUSTO</p>
+            <p class="body muted">CLP, sensores, atuadores e bancada custam caro.</p>
+          </li>
+          <li class="nota" data-letter="B">
+            <span class="nota__big" aria-hidden="true">B</span>
+            <p class="label">B — DISPONIBILIDADE</p>
+            <p class="body muted">A bancada é compartilhada, o horário é limitado.</p>
+          </li>
+          <li class="nota" data-letter="C">
+            <span class="nota__big" aria-hidden="true">C</span>
+            <p class="label">C — DADO PRESO</p>
+            <p class="body muted">As variáveis ficam dentro do ambiente de automação.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-        <!-- Parte Projeto -->
-        <section id="projeto" class="py-5">
-            <div class="container py-5">
-                <div class="reveal mb-5">
-                    <h2 class="section-title text-light">Do processo industrial à interface Web.</h2>
-                    <p class="section-copy text-white-50">
-                        O projeto representa uma malha de controle de vazão em ambiente simulado. A proposta é
-                        reproduzir virtualmente a lógica
-                        da aplicação de automação e criar uma ponte entre o ambiente OT e sistemas de TI para supervisão
-                        e visualização.
-                    </p>
-                </div>
+  <!-- 03 · MALHA DE NÍVEL -->
+  <section class="malha" id="malha">
+    <div class="wrap malha__grid">
+      <div class="malha__text">
+        <p class="label muted">MALHA DE NÍVEL</p>
+        <h2 class="heading">Um valor desejado. Um valor medido.</h2>
 
-                <!--Cards Apresentando-->
-                <div class="row g-4">
-                    <!-- Card 01 Problema -->
-                    <div class="col-md-4 reveal">
-                        <div class="card h-100 bg-dark bg-opacity-75 border-secondary border-opacity-25 rounded-4 p-4">
-                            <div class="card-body">
-                                <!-- Badge do Número -->
-                                <div
-                                    class="d-inline-block border border-success border-opacity-50 text-success rounded-3 px-3 py-1 mb-4 fw-bold small">
-                                    01
-                                </div>
-                                <h3 class="card-title h5 text-white fw-bold mb-3">Problema</h3>
-                                <p class="card-text text-white-50">
-                                    Testes e desenvolvimento industriais normalmente dependem de infraestrutura física,
-                                    como CLPs, sensores e atuadores.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+        <div class="glossary">
+          <div class="spc-readout sp">
+            <span class="k">SP</span>
+            <span class="v spc-num" id="malha-sp-value">70.0</span>
+            <span class="u">% — nível desejado</span>
+          </div>
+          <div class="spc-readout pv">
+            <span class="k">PV</span>
+            <span class="v spc-num" id="malha-pv-value">0.0</span>
+            <span class="u">% — lido pelo sensor LT-101</span>
+          </div>
+        </div>
 
-                    <!--Card 02 Solução -->
-                    <div class="col-md-4 reveal">
-                        <div class="card h-100 bg-dark bg-opacity-75 border-secondary border-opacity-25 rounded-4 p-4">
-                            <div class="card-body">
-                                <!-- Badge do Número -->
-                                <div
-                                    class="d-inline-block border border-success border-opacity-50 text-success rounded-3 px-3 py-1 mb-4 fw-bold small">
-                                    02
-                                </div>
-                                <h3 class="card-title h5 text-white fw-bold mb-3">Solução</h3>
-                                <p class="card-text text-white-50">
-                                    Utilizar uma representação simulada da automação e uma camada de integração para
-                                    disponibilizar os dados a uma aplicação Web.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+        <p class="body muted">
+          O CLP compara PV com SP e abre ou fecha a válvula de entrada até os
+          dois valores coincidirem.
+        </p>
+      </div>
 
-                    <!-- Card 03 Resultado -->
-                    <div class="col-md-4 reveal">
-                        <div class="card h-100 bg-dark bg-opacity-75 border-secondary border-opacity-25 rounded-4 p-4">
-                            <div class="card-body">
-                                <!-- Badge do Número -->
-                                <div
-                                    class="d-inline-block border border-success border-opacity-50 text-success rounded-3 px-3 py-1 mb-4 fw-bold small">
-                                    03
-                                </div>
-                                <h3 class="card-title h5 text-white fw-bold mb-3">Resultado</h3>
-                                <p class="card-text text-white-50">
-                                    Uma arquitetura experimental conectando TIA Portal, Node-RED e Dashboard Web,
-                                    demonstrando integração OT/IT.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="malha__process">
+        <div class="malha__tankword-wrap">
+          <div class="tank-word tank-word--malha" id="malha-tankword" style="--level:0;--sp:70">
+            <h3 class="tank-word__word tank-word__word--ink">nível</h3>
+            <h3 class="tank-word__word tank-word__word--liquid" aria-hidden="true">nível</h3>
+            <h3 class="tank-word__word tank-word__word--meniscus" aria-hidden="true">nível</h3>
+          </div>
+          <div class="malha__slider-wrap">
+            <label class="label muted" for="malha-sp-input">SP</label>
+            <input id="malha-sp-input" class="spc-sp malha__slider" type="range" min="10" max="95" step="0.1" value="70" aria-label="Ajustar SP — ponto de ajuste do nível" />
+          </div>
+        </div>
+        <p class="label muted">arraste o SP</p>
 
-            </div>
-        </section>
+        <svg id="malha-legend" class="spc-tank tank-legend" viewBox="0 0 300 420" width="140" role="img" aria-label="Tanque de nível com SP e PV"></svg>
 
-        <!--Sobre/ meio que resumo-->
-        <section class="py-5">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-lg-6 reveal">
-                        <div class="section-kicker text-success small fw-semibold mb-3">O desafio</div>
-                        <h2 class="section-title text-light mb-4">Por que simular uma malha inteira em vez de comprar um
-                            CLP?</h2>
-                        <p class="section-desc text-light opacity-75 fs-5 mb-0">
-                            Hardware industrial tem custo, prazo de entrega e risco de dano em testes de sintonia
-                            agressivos. Um Gêmeo Digital resolve isso: reproduz o comportamento dinâmico da malha
-                            de vazão dentro do próprio TIA Portal, permitindo testar, sintonizar e validar a lógica
-                            de controle antes — ou mesmo sem nunca precisar — de um equipamento físico.
-                        </p>
-                    </div>
-                    <div class="col-lg-6 reveal">
-                        <div class="section-kicker text-success small fw-semibold mb-3">A abordagem</div>
-                        <h2 class="section-title text-light mb-4">Gêmeo Digital como ponte entre OT e TI</h2>
-                        <p class="section-desc text-light opacity-75 fs-5 mb-0">
-                            O CLP virtual executa o PID da malha exatamente como executaria em campo. O Node-RED
-                            lê essas variáveis e as expõe como dados de rede comuns, permitindo que qualquer
-                            camada de TI — dashboards, históricos, APIs — consuma o processo como se fosse real.
-                        </p>
-                    </div>
-                </div>
-                <div class="row g-4 mt-4 reveal">
-                    <div class="col-6 col-md-3">
-                        <div class="border-top border-secondary border-opacity-25 pt-4">
-                            <div class="text-success fs-2 fw-semibold">0</div>
-                            <div class="text-white-50 small mt-2">CLPs físicos utilizados</div>
-                        </div>
-                    </div>
+        <!-- Vídeo da bancada real rodando, ao lado do tanque interativo.
+             Quando o arquivo chegar:
+             <video class="malha__video" src="video/bancada.mp4" muted loop playsinline autoplay poster="images/bancada-poster.jpg"></video> -->
+      </div>
+    </div>
+  </section>
 
-                    <div class="col-6 col-md-3">
-                        <div class="border-top border-secondary border-opacity-25 pt-4">
-                            <div class="text-success fs-2 fw-semibold">3</div>
-                            <div class="text-white-50 small mt-2">Camadas integradas (TA · Gateway · TI)</div>
-                        </div>
-                    </div>
+  <!-- 04 · DO SENSOR ATÉ A TELA
+       Diagrama único conectado, no estilo visual do smartplc-loop, com o
+       traço indo do sensor até a tela. Pin de scroll só no desktop
+       (js/script.js); no mobile, sem pin, revelação normal ao rolar.
+       Sem JS: os 6 nós ficam visíveis, estáticos, na ordem do DOM. -->
+  <section class="seis-formas" id="seis-formas">
+    <div class="wrap">
+      <p class="label muted">DO SENSOR ATÉ A TELA</p>
+      <h2 class="heading">Do sensor até a tela.</h2>
 
-                    <div class="col-6 col-md-3">
-                        <div class="border-top border-secondary border-opacity-25 pt-4">
-                            <div class="text-success fs-2 fw-semibold">100%</div>
-                            <div class="text-white-50 small mt-2">Lógica simulada no TIA Portal</div>
-                        </div>
-                    </div>
+      <div class="diagram" id="sf-diagram">
+        <div class="diagram__rail">
+          <div class="diagram__trace" id="sf-trace"></div>
+        </div>
+        <div class="diagram__nodes">
+          <div class="node">
+            <p class="node__tag label">LT-101</p>
+            <div class="bar" aria-hidden="true"><div class="bar__fill" style="height:64.7%"></div></div>
+            <p class="node__value code spc-num">64.7 %</p>
+            <p class="node__layer label muted">PROCESSO</p>
+          </div>
+          <div class="node">
+            <p class="node__tag label">DB1.PV</p>
+            <p class="node__value code spc-num">REAL := 64.7</p>
+            <p class="node__layer label muted">CLP / PLCSIM</p>
+          </div>
+          <div class="node">
+            <p class="node__tag label">NODE-RED</p>
+            <p class="node__value code spc-num">msg.payload = 64.7</p>
+            <p class="node__layer label muted">NODE-RED</p>
+          </div>
+          <div class="node">
+            <p class="node__tag label">API</p>
+            <p class="node__value code spc-num">{ "pv": 64.7 }</p>
+            <p class="node__layer label muted">ASP.NET CORE</p>
+          </div>
+          <div class="node">
+            <p class="node__tag label">SQL</p>
+            <p class="node__value code spc-num">leituras_nivel.pv = 64.7</p>
+            <p class="node__layer label muted">POSTGRESQL <span class="station__note">(estrutura prevista)</span></p>
+          </div>
+          <div class="node">
+            <p class="node__tag label">WEB</p>
+            <div class="chart-reveal" id="trend-chart-reveal"><canvas id="trend-chart" width="120" height="48" role="img" aria-label="Gráfico de tendência chegando em 64.7"></canvas></div>
+            <p class="node__layer label muted">WEB</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                    <div class="col-6 col-md-3">
-                        <div class="border-top border-secondary border-opacity-25 pt-4">
-                            <div class="text-success fs-2 fw-semibold">RT</div>
-                            <div class="text-white-50 small mt-2">Dados em tempo real via Node-RED</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- 05 · FICHA TÉCNICA -->
+  <section class="ficha">
+    <div class="wrap">
+      <p class="label muted">FICHA TÉCNICA</p>
+      <h2 class="display-l">Um projeto acadêmico de integração entre automação e software.</h2>
 
-        <!-- Parte arquitetura -->
-        <section id="arquitetura" class="py-5">
-            <div class="container">
-                <!-- Título -->
-                <div class="mb-5 reveal">
-                    <div class="section-title mb-3">
-                        <h2 class="text-light">
-                            Do CLP virtual ao navegador, em três camadas
-                        </h2>
-                    </div>
-                    <div class="section-desc">
-                        <p class="text-light opacity-75 fs-5 mb-0">
-                            Cada camada tem uma responsabilidade única no fluxo do dado —
-                            da geração do sinal de processo até sua leitura por um humano.
-                        </p>
-                    </div>
-                </div>
+      <dl class="colofao">
+        <div class="colofao__item">
+          <dt class="label muted">INSTITUIÇÃO</dt>
+          <dd class="body">SENAI Ribeirão Preto</dd>
+        </div>
+        <div class="colofao__item">
+          <dt class="label muted">CURSO</dt>
+          <dd class="body">Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas — CST ADS</dd>
+        </div>
+        <div class="colofao__item">
+          <dt class="label muted">ORIENTADOR</dt>
+          <dd class="body">Prof. MSc. Gustavo Martins Nunes Avellar</dd>
+        </div>
+        <div class="colofao__item">
+          <dt class="label muted">PERÍODO</dt>
+          <dd class="body">2º semestre de 2026 — 2026/2</dd>
+        </div>
+      </dl>
 
-                <!-- Cards -->
-                <div class="row align-items-stretch g-4 reveal">
-                    <!-- CARD 01 -->
-                    <div class="col-lg-4">
-                        <div class="d-flex align-items-center h-100">
-                            <div
-                                class="card h-100 bg-dark bg-opacity-75 border-secondary border-opacity-25 rounded-4 p-4">
-                                <div class="text-warning small mb-3">
-                                    CAMADA 01
-                                </div>
-                                <div class="text-success fs-3 mb-4">
-                                    <i class="bi bi-pc-display"></i>
-                                </div>
-                                <h4 class="text-light fw-bold mb-3">
-                                    TA — Tecnologia da Automação
-                                </h4>
-                                <p class="text-light opacity-75 mb-0 lh-lg">
-                                    TIA Portal + PLCSIM executam o PID da
-                                    malha de vazão como CLP virtual,
-                                    sem hardware físico.
-                                </p>
-                            </div>
-                            <!-- Seta -->
-                            <i class="bi bi-arrow-right fs-3 text-secondary mx-3 d-none d-lg-block"></i>
-                        </div>
-                    </div>
+      <div class="ficha__cols">
+        <div>
+          <h3 class="label muted">EQUIPE</h3>
+          <ul class="plain-list">
+            <li class="body"><a class="team-link" href="https://yagodinato.github.io/yago-dinato-portfolio/" target="_blank" rel="noopener">Yago Dinato</a> <span class="muted">— Desenvolvedor / Automação &amp; IT</span></li>
+            <li class="body"><a class="team-link" href="https://pedrohenrimende.github.io/Portfolio-BootStrap/" target="_blank" rel="noopener">Pedro M.</a> <span class="muted">— Desenvolvedor / Automação &amp; IT</span></li>
+            <li class="body"><a class="team-link" href="https://juanjorgedev.github.io/" target="_blank" rel="noopener">Juan</a> <span class="muted">— Desenvolvedor / Automação &amp; IT</span></li>
+            <li class="body"><a class="team-link" href="https://github.com/ewertonjr08/Portf-lio" target="_blank" rel="noopener">Ewerton</a> <span class="muted">— Desenvolvedor / Automação &amp; IT</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="label muted">OBJETIVOS</h3>
+          <ol class="plain-list plain-list--num">
+            <li class="body">Integrar automação industrial (OT) e desenvolvimento web (IT) num só fluxo de dados.</li>
+            <li class="body">Simular uma malha de nível de 1ª ordem e ler o mesmo valor do CLP até a interface.</li>
+            <li class="body">Demonstrar a cadeia completa: sensor → controlador → gateway → backend → banco → web.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                    <!-- CARD 02 -->
-                    <div class="col-lg-4">
-                        <div class="d-flex align-items-center h-100">
-                            <div
-                                class="card h-100 bg-dark bg-opacity-75 border-secondary border-opacity-25 rounded-4 p-4">
-                                <div class="text-warning small mb-3">
-                                    CAMADA 02
-                                </div>
-                                <div class="text-success fs-3 mb-4">
-                                    <i class="bi bi-diagram-3"></i>
-                                </div>
-                                <h4 class="text-light fw-bold mb-3">
-                                    Gateway — Integração
-                                </h4>
-                                <p class="text-light opacity-75 mb-0 lh-lg">
-                                    Node-RED coleta as variáveis da simulação
-                                    e as republica como dados de rede
-                                    padronizados.
-                                </p>
-                            </div>
-                            <!-- Seta -->
-                            <i class="bi bi-arrow-right fs-3 text-secondary mx-3 d-none d-lg-block"></i>
-                        </div>
-                    </div>
+  <!-- 06 · FINAL -->
+  <section class="final spc-field" id="final">
+    <div class="wrap">
+      <p class="label">FINAL</p>
 
-                    <!-- CARD 03 -->
-                    <div class="col-lg-4">
-                        <div class="card h-100 bg-dark bg-opacity-75 border-secondary border-opacity-25 rounded-4 p-4">
-                            <div class="text-warning small mb-3">
-                                CAMADA 03
-                            </div>
-                            <div class="text-success fs-3 mb-4">
-                                <i class="bi bi-display"></i>
-                            </div>
-                            <h4 class="text-light fw-bold mb-3">
-                                TI — Visualização e análise
-                            </h4>
-                            <p class="text-light opacity-75 mb-0 lh-lg">
-                                Dashboard web consome os dados tratados
-                                e exibe PV e SP em tempo real,
-                                como este painel.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="tank-word tank-word--no-sp tank-word--field" id="tank-interface" style="--level:0">
+        <h1 class="tank-word__word tank-word__word--ink">interface</h1>
+        <h1 class="tank-word__word tank-word__word--liquid" aria-hidden="true">interface</h1>
+        <h1 class="tank-word__word tank-word__word--meniscus" aria-hidden="true">interface</h1>
+      </div>
 
-        <section class="py-5">
-            <div class="container py-5">
-                <div class="reveal">
-                    <h2 class="display-4 fw-bold text-light mb-3">
-                        Como o sistema funciona
-                    </h2>
-                    <p class="text-white-50 fs-5 lh-lg mb-0" style="max-width: 760px;">
-                        A ideia é simples: a variável de processo é controlada na camada de automação, passa pela
-                        integração e chega à camada Web para supervisão.
-                    </p>
-                </div>
+      <div class="arrival">
+        <div class="chart-reveal" id="final-chart-reveal"><canvas id="final-chart" width="96" height="36" role="img" aria-label="O gráfico chega em 64.7"></canvas></div>
+        <p class="label muted">O DADO CHEGOU · PV 64.7</p>
+      </div>
 
-                <div class="row g-2 mt-5 align-items-stretch reveal">
-                    <div class="col-lg-2 col-md-4 col-6">
-                        <div
-                            class="h-100 border border-secondary border-opacity-25 rounded-4 bg-dark bg-opacity-50 p-4 position-relative">
-                            <div class="text-success font-monospace fw-bold small mb-3">
-                                01
-                            </div>
-                            <h3 class="h6 fw-bold text-light mb-2">
-                                Processo de vazão
-                            </h3>
-                            <p class="text-white-50 small lh-lg mb-0">
-                                Representação do comportamento do processo industrial.
-                            </p>
-                            <i class="bi bi-arrow-right text-success fs-4 position-absolute top-50 end-0 d-none d-lg-block"
-                                style="transform: translate(50%, -50%);"></i>
-                        </div>
-                    </div>
+      <div class="final-links">
+        <a class="spc-btn primary" href="https://github.com/YagoDinato/SmartPLC-Portifolio" target="_blank" rel="noopener">GitHub <span class="arr" aria-hidden="true">→</span></a>
+        <a class="spc-btn ghost" href="https://github.com/YagoDinato/SmartPLC-Portifolio/blob/main/README.md" target="_blank" rel="noopener">Documentação <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
 
-                    <div class="col-lg-2 col-md-4 col-6">
-                        <div
-                            class="h-100 border border-secondary border-opacity-25 rounded-4 bg-dark bg-opacity-50 p-4 position-relative">
-                            <div class="text-success font-monospace fw-bold small mb-3">
-                                02
-                            </div>
-                            <h3 class="h6 fw-bold text-light mb-2">
-                                Sensor / PV
-                            </h3>
-                            <p class="text-white-50 small lh-lg mb-0">
-                                A variável medida representa a vazão atual do processo.
-                            </p>
-                            <i class="bi bi-arrow-right text-success fs-4 position-absolute top-50 end-0 d-none d-lg-block"
-                                style="transform: translate(50%, -50%);"></i>
-                        </div>
-                    </div>
+  <!-- Régua de nível: substitui os números soltos por seção por uma escala
+       fixa de verdade, com um indicador lime que acompanha o progresso da
+       rolagem — "o nível é a barra de progresso" (01-conceito.md).
+       Sem régua lateral no mobile (07-mobile.md). -->
+  <nav class="page-ruler" aria-hidden="true">
+    <div class="page-ruler__track">
+      <span class="page-ruler__tick" style="--at:0">0</span>
+      <span class="page-ruler__tick" style="--at:25">25</span>
+      <span class="page-ruler__tick" style="--at:50">50</span>
+      <span class="page-ruler__tick" style="--at:75">75</span>
+      <span class="page-ruler__tick" style="--at:100">100</span>
+      <div class="page-ruler__dot"></div>
+    </div>
+  </nav>
 
-                    <div class="col-lg-2 col-md-4 col-6">
-                        <div
-                            class="h-100 border border-secondary border-opacity-25 rounded-4 bg-dark bg-opacity-50 p-4 position-relative">
-                            <div class="text-success font-monospace fw-bold small mb-3">
-                                03
-                            </div>
-                            <h3 class="h6 fw-bold text-light mb-2">
-                                Controlador
-                            </h3>
-                            <p class="text-white-50 small lh-lg mb-0">
-                                O controle busca aproximar a PV do valor desejado.
-                            </p>
-                            <i class="bi bi-arrow-right text-success fs-4 position-absolute top-50 end-0 d-none d-lg-block"
-                                style="transform: translate(50%, -50%);"></i>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2 col-md-4 col-6">
-                        <div
-                            class="h-100 border border-secondary border-opacity-25 rounded-4 bg-dark bg-opacity-50 p-4 position-relative">
-                            <div class="text-success font-monospace fw-bold small mb-3">
-                                04
-                            </div>
-                            <h3 class="h6 fw-bold text-light mb-2">
-                                TIA Portal
-                            </h3>
-                            <p class="text-white-50 small lh-lg mb-0">
-                                Ambiente de desenvolvimento e simulação da automação.
-                            </p>
-                            <i class="bi bi-arrow-right text-success fs-4 position-absolute top-50 end-0 d-none d-lg-block"
-                                style="transform: translate(50%, -50%);"></i>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2 col-md-4 col-6">
-                        <div
-                            class="h-100 border border-secondary border-opacity-25 rounded-4 bg-dark bg-opacity-50 p-4 position-relative">
-                            <div class="text-success font-monospace fw-bold small mb-3">
-                                05
-                            </div>
-                            <h3 class="h6 fw-bold text-light mb-2">
-                                Node-RED
-                            </h3>
-                            <p class="text-white-50 small lh-lg mb-0">
-                                Camada intermediária de integração e comunicação.
-                            </p>
-                            <i class="bi bi-arrow-right text-success fs-4 position-absolute top-50 end-0 d-none d-lg-block"
-                                style="transform: translate(50%, -50%);"></i>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2 col-md-4 col-6">
-                        <div
-                            class="h-100 border border-secondary border-opacity-25 rounded-4 bg-dark bg-opacity-50 p-4">
-                            <div class="text-success font-monospace fw-bold small mb-3">
-                                06
-                            </div>
-                            <h3 class="h6 fw-bold text-light mb-2">
-                                Dashboard
-                            </h3>
-                            <p class="text-white-50 small lh-lg mb-0">
-                                Visualização das informações para o usuário.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!--Parte Tecnologia-->
-        <section id="tecnologias" class="py-5">
-            <div class="container">
-                <!-- Cabeçalho da Seção -->
-                <div class="reveal mb-5">
-                    <h2 class="fw-bold mb-3 text-white">Tecnologias utilizadas</h2>
-                    <p class="text-white-50">Cada tecnologia ocupa uma função específica dentro da arquitetura do case.
-                    </p>
-                </div>
-
-                <!-- Grid de Cards -->
-                <div class="row g-4">
-
-                    <!-- Card 1 -->
-                    <div class="col-md-6 col-lg-4 reveal">
-                        <div
-                            class="card h-100 bg-dark text-white border-secondary border-opacity-25 rounded-4 p-2 shadow-sm">
-                            <div class="card-body">
-                                <span
-                                    class="d-inline-block border border-success border-opacity-50 text-success rounded-3 px-2 py-1 mb-4 small fw-bold">TIA</span>
-                                <h3 class="card-title h5 fw-bold mb-3 text-white">TIA Portal</h3>
-                                <p class="card-text text-white-50 small mb-0">Ambiente utilizado para desenvolvimento e
-                                    simulação da lógica de automação.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="col-md-6 col-lg-4 reveal">
-                        <div
-                            class="card h-100 bg-dark text-white border-secondary border-opacity-25 rounded-4 p-2 shadow-sm">
-                            <div class="card-body">
-                                <span
-                                    class="d-inline-block border border-success border-opacity-50 text-success rounded-3 px-2 py-1 mb-4 small fw-bold">NR</span>
-                                <h3 class="card-title h5 fw-bold mb-3 text-white">Node-RED</h3>
-                                <p class="card-text text-white-50 small mb-0">Camada de integração e comunicação entre o
-                                    ambiente de automação e os sistemas de TI.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="col-md-6 col-lg-4 reveal">
-                        <div
-                            class="card h-100 bg-dark text-white border-secondary border-opacity-25 rounded-4 p-2 shadow-sm">
-                            <div class="card-body">
-                                <span
-                                    class="d-inline-block border border-success border-opacity-50 text-success rounded-3 px-2 py-1 mb-4 small fw-bold">JS</span>
-                                <h3 class="card-title h5 fw-bold mb-3 text-white">JavaScript</h3>
-                                <p class="card-text text-white-50 small mb-0">Responsável pelas interações da interface
-                                    e pela atualização dinâmica dos dados demonstrativos.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="col-md-6 col-lg-4 reveal">
-                        <div
-                            class="card h-100 bg-dark text-white border-secondary border-opacity-25 rounded-4 p-2 shadow-sm">
-                            <div class="card-body">
-                                <span
-                                    class="d-inline-block border border-success border-opacity-50 text-success rounded-3 px-2 py-1 mb-4 small fw-bold">CH</span>
-                                <h3 class="card-title h5 fw-bold mb-3 text-white">Chart.js</h3>
-                                <p class="card-text text-white-50 small mb-0">Utilizado para construir a visualização
-                                    animada das variáveis SP e PV.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 5 -->
-                    <div class="col-md-6 col-lg-4 reveal">
-                        <div
-                            class="card h-100 bg-dark text-white border-secondary border-opacity-25 rounded-4 p-2 shadow-sm">
-                            <div class="card-body">
-                                <span
-                                    class="d-inline-block border border-success border-opacity-50 text-success rounded-3 px-2 py-1 mb-4 small fw-bold">BS</span>
-                                <h3 class="card-title h5 fw-bold mb-3 text-white">Bootstrap 5</h3>
-                                <p class="card-text text-white-50 small mb-0">Estrutura visual, grid e responsividade da
-                                    aplicação Web.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 6 -->
-                    <div class="col-md-6 col-lg-4 reveal">
-                        <div
-                            class="card h-100 bg-dark text-white border-secondary border-opacity-25 rounded-4 p-2 shadow-sm">
-                            <div class="card-body">
-                                <span
-                                    class="d-inline-block border border-success border-opacity-50 text-success rounded-3 px-2 py-1 mb-4 small fw-bold">HTML</span>
-                                <h3 class="card-title h5 fw-bold mb-3 text-white">HTML5</h3>
-                                <p class="card-text text-white-50 small mb-0">Estrutura semântica da Landing Page e
-                                    organização do conteúdo técnico.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Parte Competências -->
-        <section id="competencias" class="py-5">
-            <div class="container py-5">
-                <div class="row g-5 align-items-center">
-
-                    <!-- Coluna da Esquerda (Textos) -->
-                    <div class="col-lg-5 reveal">
-                        <!-- Eyebrow (Texto superior) -->
-                        <div class="d-flex align-items-center gap-3 mb-4">
-                            <div style="width: 30px; height: 2px;" class="bg-success"></div>
-                            <span class="text-success small fw-bold font-monospace">
-                                08 · Competências
-                            </span>
-                        </div>
-
-                        <h2 class="display-5 fw-bold text-light mb-4">
-                            O que este projeto demonstra
-                        </h2>
-                        <p class="text-white-50 fs-5 lh-lg mb-0">
-                            As competências abaixo estão diretamente relacionadas às decisões e entregas representadas
-                            no case.
-                        </p>
-                    </div>
-
-                    <!-- Coluna da Direita (Lista) -->
-                    <div class="col-lg-7 reveal">
-                        <div class="card bg-dark bg-opacity-75 border-secondary border-opacity-25 rounded-4 p-4 p-md-5">
-                            <ul class="list-unstyled mb-0">
-                                <!-- Item 01 -->
-                                <li
-                                    class="d-flex align-items-center border-bottom border-secondary border-opacity-25 py-3">
-                                    <span class="text-success font-monospace fw-bold me-4">01</span>
-                                    <span class="text-light">Integração entre <strong class="text-white">OT e
-                                            IT</strong></span>
-                                </li>
-
-                                <!-- Item 02 -->
-                                <li
-                                    class="d-flex align-items-center border-bottom border-secondary border-opacity-25 py-3">
-                                    <span class="text-success font-monospace fw-bold me-4">02</span>
-                                    <span class="text-light">Lógica de programação e desenvolvimento Web</span>
-                                </li>
-
-                                <!-- Item 03 -->
-                                <li
-                                    class="d-flex align-items-center border-bottom border-secondary border-opacity-25 py-3">
-                                    <span class="text-success font-monospace fw-bold me-4">03</span>
-                                    <span class="text-light">Automação industrial e simulação</span>
-                                </li>
-
-                                <!-- Item 04 -->
-                                <li
-                                    class="d-flex align-items-center border-bottom border-secondary border-opacity-25 py-3">
-                                    <span class="text-success font-monospace fw-bold me-4">04</span>
-                                    <span class="text-light">Visualização e atualização de dados</span>
-                                </li>
-
-                                <!-- Item 05 -->
-                                <li
-                                    class="d-flex align-items-center border-bottom border-secondary border-opacity-25 py-3">
-                                    <span class="text-success font-monospace fw-bold me-4">05</span>
-                                    <span class="text-light">Comunicação entre sistemas e arquitetura</span>
-                                </li>
-
-                                <!-- Item 06 -->
-                                <li
-                                    class="d-flex align-items-center border-bottom border-secondary border-opacity-25 py-3">
-                                    <span class="text-success font-monospace fw-bold me-4">06</span>
-                                    <span class="text-light">Pensamento sistêmico e resolução de problemas</span>
-                                </li>
-
-                                <!-- Item 07 (Sem borda embaixo) -->
-                                <li class="d-flex align-items-center pt-3 pb-1">
-                                    <span class="text-success font-monospace fw-bold me-4">07</span>
-                                    <span class="text-light">Conceitos relacionados à Indústria 4.0</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Parte Contato -->
-        <section id="contato" class="py-5">
-            <div class="container py-5">
-                <div
-                    class="card bg-dark bg-opacity-75 border-secondary border-opacity-25 rounded-4 p-4 p-md-5 text-center reveal">
-
-                    <!-- Eyebrow -->
-                    <div class="d-flex align-items-center justify-content-center gap-3 mb-4">
-                        <div style="width: 30px; height: 2px;" class="bg-success"></div>
-                        <span class="text-success small fw-bold font-monospace">
-                            09 · Próximo Passo
-                        </span>
-                        <div style="width: 30px; height: 2px;" class="bg-success"></div>
-                    </div>
-
-                    <!-- Título -->
-                    <h2 class="display-5 fw-bold text-light mx-auto mb-3" style="max-width: 750px;">
-                        Conectando Automação Industrial, Software e Tecnologia da Informação.
-                    </h2>
-
-                    <p class="text-white-50 fs-5 mx-auto mb-4 lh-lg" style="max-width: 700px;">
-                        Este case foi estruturado para apresentar não apenas o resultado visual, mas principalmente a
-                        arquitetura e o raciocínio por trás da integração.
-                    </p>
-
-                    <!-- Botão Projeto -->
-                    <div class="d-flex justify-content-center gap-3 mb-5">
-                        <a href="SEU_GITHUB_DO_PROJETO_AQUI" target="_blank"
-                            class="btn btn-success btn-lg px-4 fw-bold">
-                            <i class="bi bi-github me-2"></i>GitHub do Projeto
-                        </a>
-                    </div>
-
-                    <hr class="border-secondary border-opacity-25 my-4 mx-auto" style="max-width: 600px;">
-
-                    <!-- Botões Portfólios -->
-                    <div class="mt-4">
-                        <span class="d-block text-success font-monospace small fw-bold mb-3">
-                            Portfólios da Equipa
-                        </span>
-
-                        <div class="row g-3 justify-content-center max-w-lg mx-auto">
-                            <!-- Yago -->
-                            <div class="col-6 col-md-3">
-                                <a href="LINK_PORTFOLIO_YAGO" target="_blank"
-                                    class="btn btn-outline-light border-secondary border-opacity-25 w-100 py-2 d-flex align-items-center justify-content-center gap-2 rounded-3 text-nowrap">
-                                    <i class="bi bi-person-fill text-success"></i>
-                                    <span>Yago</span>
-                                </a>
-                            </div>
-
-                            <!-- Pedro M -->
-                            <div class="col-6 col-md-3">
-                                <a href="LINK_PORTFOLIO_PEDRO" target="_blank"
-                                    class="btn btn-outline-light border-secondary border-opacity-25 w-100 py-2 d-flex align-items-center justify-content-center gap-2 rounded-3 text-nowrap">
-                                    <i class="bi bi-person-fill text-success"></i>
-                                    <span>Pedro M.</span>
-                                </a>
-                            </div>
-
-                            <!-- Juan -->
-                            <div class="col-6 col-md-3">
-                                <a href="LINK_PORTFOLIO_JUAN" target="_blank"
-                                    class="btn btn-outline-light border-secondary border-opacity-25 w-100 py-2 d-flex align-items-center justify-content-center gap-2 rounded-3 text-nowrap">
-                                    <i class="bi bi-person-fill text-success"></i>
-                                    <span>Juan</span>
-                                </a>
-                            </div>
-
-                            <!-- Ewerton -->
-                            <div class="col-6 col-md-3">
-                                <a href="LINK_PORTFOLIO_EWERTON" target="_blank"
-                                    class="btn btn-outline-light border-secondary border-opacity-25 w-100 py-2 d-flex align-items-center justify-content-center gap-2 rounded-3 text-nowrap">
-                                    <i class="bi bi-person-fill text-success"></i>
-                                    <span>Ewerton</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- JS do Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- JavaScript do projeto -->
-    <script src="script.js"></script>
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/vendor/chart.umd.js"></script>
+  <!-- Componente: inicializa sozinho todo .smartplc-loop. Precisa vir antes
+       do script.js, que ajusta a PV do Hero de forma síncrona. -->
+  <script src="js/smartplc-loop.js"></script>
+  <script src="js/script.js"></script>
 </body>
-
 </html>

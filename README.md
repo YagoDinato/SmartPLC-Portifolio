@@ -77,14 +77,14 @@ O **SmartPLC** foi desenvolvido para demonstrar a aplicação prática da **conv
 
 ---
 
-## 👥 Equipa de Desenvolvimento
+## 👥 Equipe de Desenvolvimento
 
 | Membro | Função | GitHub / Portfólio |
 | :--- | :--- | :--- |
 | **Yago Dinato** | Desenvolvedor / Automação & IT | [@YagoDinato](https://github.com/YagoDinato) |
-| **Pedro M.** | Desenvolvedor / Automação & IT | [Portfólio](#) |
-| **Juan** | Desenvolvedor / Automação & IT | [Portfólio](#) |
-| **Ewerton** | Desenvolvedor / Automação & IT | [Portfólio](#) |
+| **Pedro M.** | Desenvolvedor / Automação & IT | [Portfólio](https://github.com/PedroHenriMende/Portfolio-BootStrap) |
+| **Juan** | Desenvolvedor / Automação & IT | [Portfólio](https://github.com/JuanJorgeDEV/JuanJorgeDEV.github.io) |
+| **Ewerton** | Desenvolvedor / Automação & IT | [Portfólio](https://github.com/ewertonjr08/Portf-lio) |
 
 ---
 

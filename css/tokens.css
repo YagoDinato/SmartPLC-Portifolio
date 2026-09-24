@@ -1,0 +1,177 @@
+/* SmartPLC — generated from tokens.json */
+:root, [data-theme="light"] {
+  --paper: #f1f0eb; /* Fundo da página. No claro é o papel técnico das seções físicas (Hero, Problema, Malha); no escuro é a base da interface. */
+  --paper-raised: #e6e5df; /* Faixas de apoio sobre paper: tabela de tecnologias em hover, rodapé, bloco de legenda. Nunca como card com sombra. */
+  --field: #111514; /* A zona escura fixa — onde o dado vira software (Como funciona, Arquitetura, Final). No tema escuro separa-se de paper pela régua hairline, não pela cor. */
+  --ink: #111313; /* Texto principal e headlines sobre paper e paper-raised (16.3:1 / 14.8:1 no claro; 15.4:1 / 14.0:1 no escuro). */
+  --ink-muted: #5b5f5a; /* Texto secundário, legendas, subheadline sobre paper e paper-raised (5.7:1 / 5.2:1 no claro; 6.8:1 / 6.2:1 no escuro). */
+  --on-field: #f1f0eb; /* Texto principal sobre field (16.1:1). */
+  --on-field-muted: #8d918c; /* Texto secundário e rótulos mono sobre field (5.8:1 / 6.1:1). É o cinza #8D918C do briefing — só funciona como texto em fundo escuro. */
+  --steel: #8d918c; /* Ticks de escala, grid de fundo, tubulação inativa. Decorativo sobre paper (2.8:1): nunca texto nem traço que carregue informação no tema claro. */
+  --line: #72766f; /* Contorno do tanque, tubulação, régua de seção, bordas de controle — traços que carregam significado (4.1:1 no claro, 3.8:1 no escuro sobre paper). */
+  --hairline: #cfcec7; /* Divisórias de grid e linhas de tabela. Estrutura silenciosa; não usar para delimitar controles. */
+  --hairline-field: #2a302e; /* Divisórias e grid sobre field. */
+  --liquid: #1e2825; /* O líquido do tanque. Verde-grafite, nunca azul. Delimitado pelo contorno line; o nível é lido pela linha signal no menisco. */
+  --on-liquid: #f1f0eb; /* Rótulo mono dentro do líquido (13.3:1 / 8.8:1). */
+  --signal: #c7ff3a; /* Dado vivo, e só isso: PV, menisco, pacotes de dados, indicador de etapa ativa. Sobre paper claro nunca como texto nem traço fino — só como preenchimento com on-signal por cima. Em field/escuro, texto livre (15.6:1). */
+  --on-signal: #111313; /* Texto e ícones sobre preenchimento signal (15.8:1). */
+  --signal-ink: #4a6600; /* PV escrito como texto sobre paper no tema claro (5.8:1); no escuro vira o próprio signal. */
+  --setpoint: var(--ink); /* Linha SP (tracejada 6/4) e o rótulo SP. É referência, não dado: sempre ink, nunca signal. */
+  --alarm: #c2410c; /* Desvio fora de banda (|PV − SP| > 10%) e estados de erro. Sempre com rótulo textual (ALM / DESVIO). 4.5:1 no claro, 7.1:1 no escuro. */
+  --focus-ring: #111313; /* Anel de foco: 2px sólido, offset 3px. ≥14:1 sobre paper/paper-raised em ambos os temas; sobre field usar signal. */
+}
+[data-theme="dark"] {
+  --paper: #111514;
+  --paper-raised: #191f1d;
+  --field: #0a0d0c;
+  --ink: #ecebe6;
+  --ink-muted: #9a9e98;
+  --on-field: #ecebe6;
+  --on-field-muted: #8d918c;
+  --steel: #8d918c;
+  --line: #6b736e;
+  --hairline: #262c2a;
+  --hairline-field: #232927;
+  --liquid: #34423d;
+  --on-liquid: #ecebe6;
+  --signal: #c7ff3a;
+  --on-signal: #111313;
+  --signal-ink: #c7ff3a;
+  --setpoint: var(--ink);
+  --alarm: #ff7a45;
+  --focus-ring: #c7ff3a;
+}
+:root {
+  --space-1: 4px; /* Unidade base; tick de escala. */
+  --space-2: 8px; /* Label ↔ valor dentro de um readout. */
+  --space-3: 12px; /* Padding vertical de botão. */
+  --space-4: 16px; /* Margem lateral mobile; gap de lista. */
+  --space-6: 24px; /* Gutter do grid; padding horizontal de botão. */
+  --space-8: 32px; /* Margem lateral tablet; bloco a bloco dentro da seção. */
+  --space-12: 48px; /* Headline ↔ texto. */
+  --space-16: 64px; /* Margem lateral desktop. */
+  --space-24: 96px; /* Respiro mínimo entre seções no mobile. */
+  --space-40: 160px; /* Respiro entre seções no desktop. */
+  --space-64: 256px; /* Silêncio: vazio intencional antes de uma frase editorial. */
+  --radius-0: 0px; /* Padrão de tudo: botões, faixas, imagens. Sistema de ângulo reto. */
+  --radius-xs: 2px; /* Somente pacotes de dados e o marcador de etapa. */
+  --radius-pill: 999px; /* Somente o thumb do slider de SP e o ponto de status ao vivo. */
+  --grid-columns-desktop: 12; /* ≥1024px. Hero: texto em 1–5, tanque em 7–12. */
+  --grid-columns-tablet: 8; /* 640–1023px. */
+  --grid-columns-mobile: 4; /* <640px. */
+  --grid-gutter: 24px; /* Gutter em todos os breakpoints ≥640; 16px no mobile. */
+  --grid-margin-desktop: 64px; /* Margem lateral ≥1280; 48px entre 1024 e 1279. */
+  --content-max: 1440px; /* Largura máxima do grid; acima disso o papel continua, o grid centraliza. */
+  --measure-body: 60ch; /* Largura máxima de body. */
+  --stroke-hair: 1px; /* Grid, ticks, hairlines. */
+  --stroke-line: 1.5px; /* Contorno do tanque, válvula, CLP. */
+  --stroke-pipe: 2px; /* Tubulação e o caminho de dados. */
+  --stroke-signal: 2px; /* Menisco PV e caminho de dados ativo. */
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --text-display-xxl: 500 168px/0.86 var(--font-display); /* Uma palavra por página, no máximo: a palavra-escala do Problema e do Final. Desktop ≥1280. */
+  --text-display-xl: 500 96px/0.9 var(--font-display); /* H1 do Hero no desktop (colunas 1–7). */
+  --text-display-l: 500 72px/0.94 var(--font-display); /* Frase editorial das seções 02–08; H1 no tablet. */
+  --text-heading: 500 40px/1.02 var(--font-display); /* Títulos de bloco dentro de uma seção; H1 no mobile. */
+  --text-title: 500 24px/1.15 var(--font-display); /* Nome de etapa, nome de tecnologia. */
+  --text-lead: 400 20px/30px var(--font-sans); /* Subheadline e primeiro parágrafo de seção. Máx. 44ch. */
+  --text-body: 400 16px/26px var(--font-sans); /* Texto corrido. Máx. 60ch. */
+  --text-small: 400 14px/22px var(--font-sans); /* Notas, créditos, legendas longas. */
+  --text-readout: 400 56px/1 var(--font-mono); /* Valor de PV/SP em destaque. Sempre font-variant-numeric: tabular-nums; unidade em label ao lado. */
+  --text-readout-s: 400 20px/1.2 var(--font-mono); /* Tags de dado flutuando na cena 3D e no tanque. */
+  --text-label: 500 12px/16px var(--font-mono); /* Rótulos, índices de seção, nomes de tag (DB1.PV). SEMPRE caixa alta. */
+  --text-code: 400 13px/20px var(--font-mono); /* Payloads, endereços, trechos de JSON que atravessam a arquitetura. */
+  --text-micro: 400 11px/14px var(--font-mono); /* Números de escala do tanque e timestamps. */
+}
+.display-xxl {
+  font-family: var(--font-display);
+  font-size: 168px;
+  line-height: 0.86;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+.display-xl {
+  font-family: var(--font-display);
+  font-size: 96px;
+  line-height: 0.9;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+.display-l {
+  font-family: var(--font-display);
+  font-size: 72px;
+  line-height: 0.94;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+.heading {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.lead {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.small {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.readout {
+  font-family: var(--font-mono);
+  font-size: 56px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.readout-s {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+.code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.micro {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}

@@ -1,0 +1,102 @@
+/* As fontes já são servidas localmente por css/style.css (@font-face com os
+   .woff2 em fonts/) — removido o @import remoto do Google Fonts que
+   carregava as mesmas famílias de novo, duplicado. */
+:root {
+  --ease-process: cubic-bezier(.22,.61,.36,1);
+  --ease-signal: cubic-bezier(.65,0,.35,1);
+  --ease-snap: cubic-bezier(.2,0,0,1);
+  --dur-snap: 160ms;
+  --dur-enter: 640ms;
+  --dur-stroke: 1200ms;
+  --dur-packet: 1600ms;
+}
+
+body { background: var(--paper); color: var(--ink); font-family: var(--font-sans); margin: 0; -webkit-font-smoothing: antialiased; }
+.spc-field { background: var(--field); color: var(--on-field); }
+
+/* ---- type helpers ---- */
+.spc-label { font-family: var(--font-mono); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+.spc-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.spc-muted { color: var(--ink-muted); }
+.spc-field .spc-muted { color: var(--on-field-muted); }
+
+/* ---- Tank (SVG) ---- */
+.spc-tank { display: block; overflow: visible; }
+.spc-tank .shell { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.spc-tank .shell-fill { fill: var(--paper); }
+.spc-tank .liquid { fill: var(--liquid); }
+.spc-tank .meniscus { stroke: var(--signal); stroke-width: 2; fill: none; }
+.spc-tank .sp { stroke: var(--setpoint); stroke-width: 1; stroke-dasharray: 6 4; }
+.spc-tank .tick { stroke: var(--line); stroke-width: 1; }
+.spc-tank .tick.minor { stroke: var(--steel); }
+.spc-tank .pipe { fill: none; stroke: var(--line); stroke-width: 2; }
+.spc-tank .flow { fill: none; stroke: var(--liquid); stroke-width: 2; stroke-dasharray: 4 10; }
+.spc-tank .valve { fill: var(--paper); stroke: var(--line); stroke-width: 1.5; }
+.spc-tank .valve-open { fill: var(--line); }
+.spc-tank .inst { fill: var(--paper); stroke: var(--line); stroke-width: 1.5; }
+.spc-tank .txt { font-family: var(--font-mono); font-size: 10px; letter-spacing: .06em; fill: var(--ink-muted); }
+.spc-tank .txt-ink { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: .06em; fill: var(--ink); }
+.spc-tank .txt-pv { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: .06em; fill: var(--signal-ink); }
+.spc-tank .txt-liq { font-family: var(--font-mono); font-size: 10px; letter-spacing: .06em; fill: var(--on-liquid); }
+.spc-tank .pv-chip { fill: var(--signal); stroke: var(--on-signal); stroke-width: 1.5; }
+.spc-packet { fill: var(--signal); stroke: var(--on-signal); stroke-width: 1.5; }
+.spc-field .spc-packet { stroke: none; }
+.spc-tank .pv-chip-txt { font-family: var(--font-mono); font-size: 11px; font-weight: 500; fill: var(--on-signal); }
+.spc-tank .wire { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 3; }
+.spc-tank .plc { fill: var(--field); stroke: var(--line); stroke-width: 1.5; }
+.spc-tank .txt-field { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: .06em; fill: var(--on-field); }
+.spc-tank .txt-field-m { font-family: var(--font-mono); font-size: 10px; letter-spacing: .06em; fill: var(--on-field-muted); }
+.spc-tank .led { fill: var(--signal); }
+.spc-tank .led.off { fill: var(--hairline-field); }
+.spc-tank.is-offline .meniscus, .spc-tank.is-offline .flow { opacity: 0; }
+
+/* ---- Readout ---- */
+.spc-readout { display: inline-grid; grid-template-columns: auto auto; column-gap: 8px; align-items: baseline; }
+.spc-readout .k { font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: .08em; }
+.spc-readout .v { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 56px; line-height: 1; letter-spacing: -.02em; }
+.spc-readout .u { font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); grid-column: 2; }
+.spc-readout.is-sm .v { font-size: 20px; letter-spacing: 0; }
+.spc-readout.pv .k, .spc-readout.pv .v { color: var(--signal-ink); }
+.spc-readout.sp .k, .spc-readout.sp .v { color: var(--setpoint); }
+.spc-field .spc-readout.pv .k, .spc-field .spc-readout.pv .v { color: var(--signal); }
+.spc-field .spc-readout.sp .k, .spc-field .spc-readout.sp .v { color: var(--on-field); }
+.spc-field .spc-readout .u { color: var(--on-field-muted); }
+.spc-readout.is-alarm .v { color: var(--alarm); }
+.spc-readout .alm { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: .08em; color: var(--alarm); grid-column: 2; }
+
+/* ---- SectionIndex ---- */
+.spc-index { border-top: 1.5px solid var(--line); padding-top: 12px; display: flex; justify-content: space-between; color: var(--ink); }
+.spc-index .n { color: var(--ink-muted); }
+.spc-field .spc-index { border-color: var(--on-field-muted); color: var(--on-field); }
+.spc-field .spc-index .n { color: var(--on-field-muted); }
+
+/* ---- Button ---- */
+.spc-btn { display: inline-flex; align-items: center; gap: 16px; min-height: 48px; padding: 12px 24px; border: 1.5px solid var(--ink); border-radius: 0; font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background var(--dur-snap) var(--ease-snap), color var(--dur-snap) var(--ease-snap); }
+.spc-btn .arr { transition: transform var(--dur-snap) var(--ease-snap); }
+.spc-btn:hover .arr { transform: translateX(4px); }
+.spc-btn:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+.spc-btn.primary { background: var(--ink); color: var(--paper); }
+.spc-btn.primary:hover { background: transparent; color: var(--ink); }
+.spc-btn.ghost { background: transparent; color: var(--ink); }
+.spc-btn.ghost:hover { background: var(--ink); color: var(--paper); }
+.spc-field .spc-btn { border-color: var(--on-field); }
+.spc-field .spc-btn:focus-visible { outline-color: var(--signal); }
+.spc-field .spc-btn.primary { background: var(--signal); color: var(--on-signal); border-color: var(--signal); }
+.spc-field .spc-btn.primary:hover { background: transparent; color: var(--signal); }
+.spc-field .spc-btn.ghost { color: var(--on-field); }
+.spc-field .spc-btn.ghost:hover { background: var(--on-field); color: var(--field); }
+.spc-link { font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: inherit; text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
+.spc-link:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+
+/* ---- Setpoint slider ---- */
+.spc-sp { -webkit-appearance: none; appearance: none; background: transparent; }
+.spc-sp::-webkit-slider-runnable-track { height: 1.5px; background: var(--line); }
+.spc-sp::-moz-range-track { height: 1.5px; background: var(--line); }
+.spc-sp::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -9px; border-radius: 999px; background: var(--paper); border: 2px solid var(--ink); cursor: grab; }
+.spc-sp::-moz-range-thumb { width: 16px; height: 16px; border-radius: 999px; background: var(--paper); border: 2px solid var(--ink); cursor: grab; }
+.spc-sp:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .spc-tank .flow { animation: none !important; }
+  * { transition-duration: 0ms !important; }
+}
