@@ -11,30 +11,16 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
-  <!-- 01 · HERO (Cartaz)
-       EXCEÇÃO REGISTRADA À v2-direcao.md: a v2 define a seção 1 como
-       "Cartaz sem diagrama". Decisão do Juan (2026-09-23): o Hero passa a
-       ter o SmartPLC Loop no lado visual. A exceção vale só para o Hero —
-       o resto da v2 continua valendo (Barlow/Barlow Condensed + IBM Plex
-       Mono, sem badges, lime só em dado vivo, SP tracejada fixa).
-       Ordem do DOM = ordem mobile (marca → headline → texto → loop → links).
-       No desktop o grid reposiciona; leitura e tab seguem o DOM. -->
   <section class="hero" id="hero">
     <div class="wrap hero__grid">
       <a class="hero__brand" href="#hero" aria-label="SmartPLC — início">
         <img src="images/smartplc-logo.svg" alt="SmartPLC" width="146" height="28" />
       </a>
-
       <h1 class="hero__title">Automação que você consegue enxergar.</h1>
-
       <p class="hero__lead">
         Uma malha de nível simulada conectando automação industrial e software.
       </p>
-
       <div class="hero__visual">
-        <!-- Markup do componente "malha de nível" (css/smartplc-loop.css +
-             js/smartplc-loop.js fazem o cálculo/layout). -->
         <div class="smartplc-loop" data-layout="desktop" data-pv="64.7" data-sp="70.0" data-band="10" data-sp-submerged="false" role="img" aria-label="Malha de nível: PV 64.7 %, SP 70.0 %">
         <div class="spl-stage">
         <svg class="spl-svg" viewBox="0 0 720 800" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false">
@@ -87,15 +73,12 @@
         <div class="spl-readouts spl-m"><div class="spc-readout sp is-sm"><span class="k">SP</span><span class="v" data-sp="">70.0</span><span class="u">%</span></div><div class="spc-readout pv is-sm"><span class="k">PV</span><span class="v" data-pv="">64.7</span><span class="u">%</span><span class="alm" hidden="">DESVIO</span></div></div>
         </div>
       </div>
-
       <div class="hero__links">
         <a class="spc-link" href="https://github.com/YagoDinato/SmartPLC-Portifolio" target="_blank" rel="noopener">GitHub</a>
         <a class="spc-link" href="https://yagodinato.github.io/SmartPLC-Portifolio/" target="_blank" rel="noopener">Projeto</a>
       </div>
     </div>
   </section>
-
-  <!-- 02 · PROBLEMA -->
   <section class="problema">
     <div class="wrap">
       <p class="frase display-l">Testar automação não deveria exigir uma</p>
@@ -105,11 +88,7 @@
         <h1 class="tank-word__word tank-word__word--meniscus" aria-hidden="true">bancada</h1>
       </div>
       <p class="frase frase--end display-l">industrial inteira.</p>
-
-      <!-- Sem JS / prefers-reduced-motion: .notas fica na grade normal,
-           empilhada e legível (fallback). Com JS, script.js troca para a
-           revelação grande pinada (id="abc-pin", classe .js-abc). -->
-      <div id="abc-pin">
+            <div id="abc-pin">
         <ul class="notas">
           <li class="nota" data-letter="A">
             <span class="nota__big" aria-hidden="true">A</span>
@@ -130,14 +109,11 @@
       </div>
     </div>
   </section>
-
-  <!-- 03 · MALHA DE NÍVEL -->
   <section class="malha" id="malha">
     <div class="wrap malha__grid">
       <div class="malha__text">
         <p class="label muted">MALHA DE NÍVEL</p>
         <h2 class="heading">Um valor desejado. Um valor medido.</h2>
-
         <div class="glossary">
           <div class="spc-readout sp">
             <span class="k">SP</span>
@@ -150,13 +126,11 @@
             <span class="u">% — lido pelo sensor LT-101</span>
           </div>
         </div>
-
         <p class="body muted">
           O CLP compara PV com SP e abre ou fecha a válvula de entrada até os
           dois valores coincidirem.
         </p>
       </div>
-
       <div class="malha__process">
         <div class="malha__tankword-wrap">
           <div class="tank-word tank-word--malha" id="malha-tankword" style="--level:0;--sp:70">
@@ -170,73 +144,97 @@
           </div>
         </div>
         <p class="label muted">arraste o SP</p>
-
         <svg id="malha-legend" class="spc-tank tank-legend" viewBox="0 0 300 420" width="140" role="img" aria-label="Tanque de nível com SP e PV"></svg>
-
-        <!-- Vídeo da bancada real rodando, ao lado do tanque interativo.
-             Quando o arquivo chegar:
-             <video class="malha__video" src="video/bancada.mp4" muted loop playsinline autoplay poster="images/bancada-poster.jpg"></video> -->
-      </div>
+              </div>
     </div>
   </section>
-
-  <!-- 04 · DO SENSOR ATÉ A TELA
-       Diagrama único conectado, no estilo visual do smartplc-loop, com o
-       traço indo do sensor até a tela. Pin de scroll só no desktop
-       (js/script.js); no mobile, sem pin, revelação normal ao rolar.
-       Sem JS: os 6 nós ficam visíveis, estáticos, na ordem do DOM. -->
   <section class="seis-formas" id="seis-formas">
     <div class="wrap">
       <p class="label muted">DO SENSOR ATÉ A TELA</p>
       <h2 class="heading">Do sensor até a tela.</h2>
-
-      <div class="diagram" id="sf-diagram">
-        <div class="diagram__rail">
-          <div class="diagram__trace" id="sf-trace"></div>
+      <div class="sf-steps" id="sf-steps">
+        <div class="sf-rail" id="sf-rail" aria-hidden="true">
+          <div class="sf-rail__line"></div>
+          <div class="sf-rail__trace" id="sf-rail-trace"></div>
+          <div class="sf-rail__stop"><span class="sf-rail__dot"></span><span class="sf-rail__label">SENSOR</span></div>
+          <div class="sf-rail__stop"><span class="sf-rail__dot"></span><span class="sf-rail__label">CLP</span></div>
+          <div class="sf-rail__stop"><span class="sf-rail__dot"></span><span class="sf-rail__label">INTEGRAÇÃO</span></div>
+          <div class="sf-rail__stop"><span class="sf-rail__dot"></span><span class="sf-rail__label">API</span></div>
+          <div class="sf-rail__stop"><span class="sf-rail__dot"></span><span class="sf-rail__label">BANCO</span></div>
+          <div class="sf-rail__stop"><span class="sf-rail__dot"></span><span class="sf-rail__label">TELA</span></div>
         </div>
-        <div class="diagram__nodes">
-          <div class="node">
-            <p class="node__tag label">LT-101</p>
-            <div class="bar" aria-hidden="true"><div class="bar__fill" style="height:64.7%"></div></div>
-            <p class="node__value code spc-num">64.7 %</p>
-            <p class="node__layer label muted">PROCESSO</p>
+        <p class="sf-finale" id="sf-finale">Seis etapas. Uma leitura.</p>
+        <article class="sf-step">
+          <div class="sf-step__head">
+            <svg class="sf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="13" r="7"></circle><path d="M12 4V1.5"></path></svg>
+            <p class="sf-step__n label muted">01 / 06</p>
           </div>
-          <div class="node">
-            <p class="node__tag label">DB1.PV</p>
-            <p class="node__value code spc-num">REAL := 64.7</p>
-            <p class="node__layer label muted">CLP / PLCSIM</p>
+          <h3 class="sf-step__title">Sensor<span class="sf-step__underline" aria-hidden="true"></span></h3>
+          <p class="sf-step__ref label muted">(LT-101)</p>
+          <p class="sf-step__text">O sensor de nível mede o tanque físico, na bancada, e manda esse valor pro CLP — é a única etapa das seis que acontece fora de um computador.</p>
+          <p class="sf-step__tech label muted">PROCESSO</p>
+          <p class="sf-step__code code spc-num">64.7 %</p>
+        </article>
+        <article class="sf-step">
+          <div class="sf-step__head">
+            <svg class="sf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"></rect><circle cx="9" cy="16" r="0.6" fill="currentColor" stroke="none"></circle><circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"></circle><circle cx="15" cy="16" r="0.6" fill="currentColor" stroke="none"></circle></svg>
+            <p class="sf-step__n label muted">02 / 06</p>
           </div>
-          <div class="node">
-            <p class="node__tag label">NODE-RED</p>
-            <p class="node__value code spc-num">msg.payload = 64.7</p>
-            <p class="node__layer label muted">NODE-RED</p>
+          <h3 class="sf-step__title">CLP<span class="sf-step__underline" aria-hidden="true"></span></h3>
+          <p class="sf-step__ref label muted">(DB1.PV)</p>
+          <p class="sf-step__text">O CLP (Controlador Lógico Programável) guarda essa leitura numa variável da própria memória — é onde o sinal analógico vira um número que o resto do sistema consegue usar.</p>
+          <p class="sf-step__tech label muted">PLCSIM</p>
+          <p class="sf-step__code code spc-num">REAL := 64.7</p>
+        </article>
+        <article class="sf-step">
+          <div class="sf-step__head">
+            <svg class="sf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="5" cy="12" r="2"></circle><path d="M7 12h10"></path><path d="M14 9l3 3-3 3"></path></svg>
+            <p class="sf-step__n label muted">03 / 06</p>
           </div>
-          <div class="node">
-            <p class="node__tag label">API</p>
-            <p class="node__value code spc-num">{ "pv": 64.7 }</p>
-            <p class="node__layer label muted">ASP.NET CORE</p>
+          <h3 class="sf-step__title">Integração<span class="sf-step__underline" aria-hidden="true"></span></h3>
+          <p class="sf-step__ref label muted">(Node-RED)</p>
+          <p class="sf-step__text">O Node-RED lê essa variável do CLP e publica o valor pra fora da rede industrial — é a ponte entre o mundo da automação (CLP) e o mundo do software comum (APIs, bancos, telas).</p>
+          <p class="sf-step__tech label muted">NODE-RED</p>
+          <p class="sf-step__code code spc-num">msg.payload = 64.7</p>
+        </article>
+        <article class="sf-step">
+          <div class="sf-step__head">
+            <svg class="sf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 4c-2 0-3 1-3 3v4c0 1-1 2-2 2 1 0 2 1 2 2v4c0 2 1 3 3 3"></path><path d="M15 4c2 0 3 1 3 3v4c0 1 1 2 2 2-1 0-2 1-2 2v4c0 2-1 3-3 3"></path></svg>
+            <p class="sf-step__n label muted">04 / 06</p>
           </div>
-          <div class="node">
-            <p class="node__tag label">SQL</p>
-            <p class="node__value code spc-num">leituras_nivel.pv = 64.7</p>
-            <p class="node__layer label muted">POSTGRESQL <span class="station__note">(estrutura prevista)</span></p>
+          <h3 class="sf-step__title">API<span class="sf-step__underline" aria-hidden="true"></span></h3>
+          <p class="sf-step__ref label muted">(ASP.NET Core)</p>
+          <p class="sf-step__text">O backend recebe o dado do Node-RED e expõe como uma API — um endereço que qualquer aplicação pode consultar pra saber o valor atual.</p>
+          <p class="sf-step__code code spc-num">{ "pv": 64.7 }</p>
+        </article>
+        <article class="sf-step">
+          <div class="sf-step__head">
+            <svg class="sf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse><path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6"></path><path d="M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg>
+            <p class="sf-step__n label muted">05 / 06</p>
           </div>
-          <div class="node">
-            <p class="node__tag label">WEB</p>
-            <div class="chart-reveal" id="trend-chart-reveal"><canvas id="trend-chart" width="120" height="48" role="img" aria-label="Gráfico de tendência chegando em 64.7"></canvas></div>
-            <p class="node__layer label muted">WEB</p>
+          <h3 class="sf-step__title">Banco de dados<span class="sf-step__underline" aria-hidden="true"></span></h3>
+          <p class="sf-step__ref label muted">(PostgreSQL)</p>
+          <p class="sf-step__text">Cada leitura recebida fica salva no banco de dados, com data e hora — é o que permite reconstruir o histórico depois, não só ver o valor de agora.</p>
+          <p class="sf-step__tech label muted">ESTRUTURA PREVISTA</p>
+          <p class="sf-step__code code spc-num">leituras_nivel.pv = 64.7</p>
+        </article>
+        <article class="sf-step">
+          <div class="sf-step__head">
+            <svg class="sf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1"></rect><path d="M8 20h8M12 16v4"></path></svg>
+            <p class="sf-step__n label muted">06 / 06</p>
           </div>
-        </div>
+          <h3 class="sf-step__title">Tela<span class="sf-step__underline" aria-hidden="true"></span></h3>
+          <p class="sf-step__ref label muted">(Web)</p>
+          <p class="sf-step__text">A interface web consulta esse histórico e desenha o gráfico — o último passo, transformar um número guardado no banco em algo que uma pessoa consegue olhar e entender. É a mesma leitura da LT-101, seis etapas atrás.</p>
+          <p class="sf-step__code"><canvas id="trend-chart" width="120" height="40" role="img" aria-label="Gráfico de tendência chegando em 64.7"></canvas></p>
+        </article>
       </div>
     </div>
   </section>
-
-  <!-- 05 · FICHA TÉCNICA -->
   <section class="ficha">
     <div class="wrap">
       <p class="label muted">FICHA TÉCNICA</p>
       <h2 class="display-l">Um projeto acadêmico de integração entre automação e software.</h2>
-
       <dl class="colofao">
         <div class="colofao__item">
           <dt class="label muted">INSTITUIÇÃO</dt>
@@ -255,7 +253,6 @@
           <dd class="body">2º semestre de 2026 — 2026/2</dd>
         </div>
       </dl>
-
       <div class="ficha__cols">
         <div>
           <h3 class="label muted">EQUIPE</h3>
@@ -277,35 +274,25 @@
       </div>
     </div>
   </section>
-
-  <!-- 06 · FINAL -->
   <section class="final spc-field" id="final">
     <div class="wrap">
       <p class="label">FINAL</p>
-
       <div class="tank-word tank-word--no-sp tank-word--field" id="tank-interface" style="--level:0">
         <h1 class="tank-word__word tank-word__word--ink">interface</h1>
         <h1 class="tank-word__word tank-word__word--liquid" aria-hidden="true">interface</h1>
         <h1 class="tank-word__word tank-word__word--meniscus" aria-hidden="true">interface</h1>
       </div>
-
       <div class="arrival">
         <div class="chart-reveal" id="final-chart-reveal"><canvas id="final-chart" width="96" height="36" role="img" aria-label="O gráfico chega em 64.7"></canvas></div>
         <p class="label muted">O DADO CHEGOU · PV 64.7</p>
       </div>
-
       <div class="final-links">
         <a class="spc-btn primary" href="https://github.com/YagoDinato/SmartPLC-Portifolio" target="_blank" rel="noopener">GitHub <span class="arr" aria-hidden="true">→</span></a>
         <a class="spc-btn ghost" href="https://github.com/YagoDinato/SmartPLC-Portifolio/blob/main/README.md" target="_blank" rel="noopener">Documentação <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
-
-  <!-- Régua de nível: substitui os números soltos por seção por uma escala
-       fixa de verdade, com um indicador lime que acompanha o progresso da
-       rolagem — "o nível é a barra de progresso" (01-conceito.md).
-       Sem régua lateral no mobile (07-mobile.md). -->
-  <nav class="page-ruler" aria-hidden="true">
+    <nav class="page-ruler" aria-hidden="true">
     <div class="page-ruler__track">
       <span class="page-ruler__tick" style="--at:0">0</span>
       <span class="page-ruler__tick" style="--at:25">25</span>
@@ -315,13 +302,10 @@
       <div class="page-ruler__dot"></div>
     </div>
   </nav>
-
   <script src="js/vendor/gsap.min.js"></script>
   <script src="js/vendor/ScrollTrigger.min.js"></script>
   <script src="js/vendor/chart.umd.js"></script>
-  <!-- Componente: inicializa sozinho todo .smartplc-loop. Precisa vir antes
-       do script.js, que ajusta a PV do Hero de forma síncrona. -->
-  <script src="js/smartplc-loop.js"></script>
+    <script src="js/smartplc-loop.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
