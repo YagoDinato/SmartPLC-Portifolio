@@ -483,9 +483,13 @@ section {
 
 .sobre {
   border-top: 1px solid var(--hairline);
+  padding-bottom: var(--gap-section);
 }
-.sobre .heading { font-size: var(--text-display); margin: 8px 0 40px; max-width: 22ch; }
-.sobre__cols { display: flex; flex-direction: column; gap: 20px; max-width: 62ch; }
+@media (min-width: 900px) {
+  .sobre { padding-bottom: var(--gap-section-lg); }
+}
+.sobre .heading { font-size: var(--text-display); margin: 8px 0 28px; max-width: 22ch; }
+.sobre__cols { display: flex; flex-direction: column; gap: 16px; max-width: 62ch; }
 .sobre__p { opacity: 0; transform: translateY(16px); }
 
 .ficha {
@@ -500,7 +504,7 @@ section {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
-  padding-bottom: 40px;
+  padding-bottom: 56px;
   border-bottom: 1px solid var(--hairline);
 }
 @media (min-width: 640px) {
@@ -508,11 +512,35 @@ section {
 }
 .ficha-meta__item dt { margin-bottom: 8px; }
 .ficha-meta__item dd { color: var(--ink-muted); }
-.plain-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-.plain-list--num { list-style: decimal; padding-left: 20px; }
-.plain-list--num li { padding-left: 4px; }
 
-.ficha__equipe { margin-top: 40px; }
+.ficha__objetivos { margin-top: 56px; }
+.obj-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 20px;
+}
+@media (min-width: 640px) {
+  .obj-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.obj-card {
+  border-top: 1px solid var(--hairline);
+  padding-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.obj-card__n {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 40px;
+  color: var(--signal-ink);
+}
+.obj-card p { max-width: 32ch; }
+
+.ficha__equipe { margin-top: 64px; }
 .team-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -544,9 +572,10 @@ section {
   right: 20px;
   bottom: 20px;
   font-family: var(--font-mono);
-  transition: transform var(--dur-snap) var(--ease-snap);
+  color: var(--signal-ink);
+  transition: transform var(--dur-snap) var(--ease-snap), color var(--dur-snap) var(--ease-snap);
 }
-.team-card:hover .team-card__arr { transform: translateX(4px); }
+.team-card:hover .team-card__arr { transform: translateX(4px); color: var(--signal); }
 
 .tank-word--field { margin-top: 16px; }
 .arrival { display: flex; align-items: center; gap: 12px; margin-top: 32px; }
