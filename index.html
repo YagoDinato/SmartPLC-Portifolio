@@ -231,45 +231,70 @@
       </div>
     </div>
   </section>
+  <section class="sobre" id="sobre">
+    <div class="wrap">
+      <p class="label muted">SOBRE O PROJETO</p>
+      <h2 class="heading">Por que simular uma malha de nível?</h2>
+      <div class="sobre__cols">
+        <p class="sobre__p body">Automação industrial e desenvolvimento de software costumam ser tratados como mundos separados nos cursos técnicos — quem mexe com CLP não mexe com banco de dados, quem escreve backend não vê o processo físico do outro lado. Isso cria um ponto cego bem na conexão que mais importa na indústria conectada.</p>
+        <p class="sobre__p body">O SmartPLC nasceu pra fechar esse ponto cego: uma malha de nível de 1ª ordem, com controle P de verdade rodando num CLP simulado, lida por um pipeline completo até uma tela — o mesmo número, sem se perder, em seis camadas técnicas diferentes.</p>
+        <p class="sobre__p body">O resultado não é só o software funcionando — é dar pra ver, passo a passo, exatamente onde cada camada entra e por quê.</p>
+      </div>
+    </div>
+  </section>
   <section class="ficha">
     <div class="wrap">
       <p class="label muted">FICHA TÉCNICA</p>
       <h2 class="display-l">Um projeto acadêmico de integração entre automação e software.</h2>
-      <dl class="colofao">
-        <div class="colofao__item">
+      <dl class="ficha-meta">
+        <div class="ficha-meta__item">
           <dt class="label muted">INSTITUIÇÃO</dt>
           <dd class="body">SENAI Ribeirão Preto</dd>
         </div>
-        <div class="colofao__item">
+        <div class="ficha-meta__item">
           <dt class="label muted">CURSO</dt>
           <dd class="body">Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas — CST ADS</dd>
         </div>
-        <div class="colofao__item">
+        <div class="ficha-meta__item">
           <dt class="label muted">ORIENTADOR</dt>
           <dd class="body">Prof. MSc. Gustavo Martins Nunes Avellar</dd>
         </div>
-        <div class="colofao__item">
+        <div class="ficha-meta__item">
           <dt class="label muted">PERÍODO</dt>
           <dd class="body">2º semestre de 2026 — 2026/2</dd>
         </div>
       </dl>
-      <div class="ficha__cols">
-        <div>
-          <h3 class="label muted">EQUIPE</h3>
-          <ul class="plain-list">
-            <li class="body"><a class="team-link" href="https://yagodinato.github.io/yago-dinato-portfolio/" target="_blank" rel="noopener">Yago Dinato</a> <span class="muted">— Desenvolvedor / Automação &amp; IT</span></li>
-            <li class="body"><a class="team-link" href="https://pedrohenrimende.github.io/Portfolio-BootStrap/" target="_blank" rel="noopener">Pedro M.</a> <span class="muted">— Desenvolvedor / Automação &amp; IT</span></li>
-            <li class="body"><a class="team-link" href="https://juanjorgedev.github.io/" target="_blank" rel="noopener">Juan</a> <span class="muted">— Desenvolvedor / Automação &amp; IT</span></li>
-            <li class="body"><a class="team-link" href="https://github.com/ewertonjr08/Portf-lio" target="_blank" rel="noopener">Ewerton</a> <span class="muted">— Desenvolvedor / Automação &amp; IT</span></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="label muted">OBJETIVOS</h3>
-          <ol class="plain-list plain-list--num">
-            <li class="body">Integrar automação industrial (OT) e desenvolvimento web (IT) num só fluxo de dados.</li>
-            <li class="body">Simular uma malha de nível de 1ª ordem e ler o mesmo valor do CLP até a interface.</li>
-            <li class="body">Demonstrar a cadeia completa: sensor → controlador → gateway → backend → banco → web.</li>
-          </ol>
+      <div>
+        <h3 class="label muted">OBJETIVOS</h3>
+        <ol class="plain-list plain-list--num">
+          <li class="body">Integrar automação industrial (OT) e desenvolvimento web (IT) num só fluxo de dados.</li>
+          <li class="body">Simular uma malha de nível de 1ª ordem e ler o mesmo valor do CLP até a interface.</li>
+          <li class="body">Demonstrar a cadeia completa: sensor → controlador → gateway → backend → banco → web.</li>
+        </ol>
+      </div>
+      <div class="ficha__equipe">
+        <h3 class="label muted">EQUIPE</h3>
+        <div class="team-grid">
+          <a class="team-card" href="https://yagodinato.github.io/yago-dinato-portfolio/" target="_blank" rel="noopener">
+            <span class="team-card__name">Yago Dinato</span>
+            <span class="team-card__role">Desenvolvedor / Automação &amp; IT</span>
+            <span class="arr team-card__arr" aria-hidden="true">→</span>
+          </a>
+          <a class="team-card" href="https://pedrohenrimende.github.io/Portfolio-BootStrap/" target="_blank" rel="noopener">
+            <span class="team-card__name">Pedro M.</span>
+            <span class="team-card__role">Desenvolvedor / Automação &amp; IT</span>
+            <span class="arr team-card__arr" aria-hidden="true">→</span>
+          </a>
+          <a class="team-card" href="https://juanjorgedev.github.io/" target="_blank" rel="noopener">
+            <span class="team-card__name">Juan</span>
+            <span class="team-card__role">Desenvolvedor / Automação &amp; IT</span>
+            <span class="arr team-card__arr" aria-hidden="true">→</span>
+          </a>
+          <a class="team-card" href="https://github.com/ewertonjr08/Portf-lio" target="_blank" rel="noopener">
+            <span class="team-card__name">Ewerton</span>
+            <span class="team-card__role">Desenvolvedor / Automação &amp; IT</span>
+            <span class="arr team-card__arr" aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </div>
@@ -292,7 +317,36 @@
       </div>
     </div>
   </section>
-    <nav class="page-ruler" aria-hidden="true">
+  <section class="colofao" id="colofao">
+    <div class="wrap">
+      <p class="label muted">COLOFÃO</p>
+      <dl class="colofao__list">
+        <div class="colofao__item">
+          <dt class="label muted">TIPOGRAFIA</dt>
+          <dd class="body">Space Grotesk, IBM Plex Sans e IBM Plex Mono — Google Fonts, licença aberta.</dd>
+        </div>
+        <div class="colofao__item">
+          <dt class="label muted">ANIMAÇÃO</dt>
+          <dd class="body">GSAP + ScrollTrigger (GreenSock).</dd>
+        </div>
+        <div class="colofao__item">
+          <dt class="label muted">GRÁFICOS</dt>
+          <dd class="body">Chart.js.</dd>
+        </div>
+        <div class="colofao__item">
+          <dt class="label muted">CONSTRUÇÃO</dt>
+          <dd class="body">HTML, CSS e JS puro, sem framework — implementado com apoio de IA (Claude).</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+  <footer class="site-footer">
+    <div class="wrap site-footer__wrap">
+      <p class="micro muted">SmartPLC © 2026</p>
+      <a class="micro site-footer__top" href="#hero">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+  <nav class="page-ruler" aria-hidden="true">
     <div class="page-ruler__track">
       <span class="page-ruler__tick" style="--at:0">0</span>
       <span class="page-ruler__tick" style="--at:25">25</span>
@@ -305,7 +359,7 @@
   <script src="js/vendor/gsap.min.js"></script>
   <script src="js/vendor/ScrollTrigger.min.js"></script>
   <script src="js/vendor/chart.umd.js"></script>
-    <script src="js/smartplc-loop.js"></script>
+  <script src="js/smartplc-loop.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

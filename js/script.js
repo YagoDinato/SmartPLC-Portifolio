@@ -341,6 +341,24 @@
       });
     }
   })();
+  (function sobreReveal() {
+    var paragraphs = [].slice.call(document.querySelectorAll(".sobre__p"));
+    if (!paragraphs.length) return;
+    if (reducedMotion) {
+      gsap.set(paragraphs, { opacity: 1, y: 0 });
+      return;
+    }
+    paragraphs.forEach(function (el, i) {
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top 85%",
+        once: true,
+        onEnter: function () {
+          gsap.to(el, { opacity: 1, y: 0, duration: 0.5, delay: i * 0.08, ease: "power2.out" });
+        },
+      });
+    });
+  })();
   (function final() {
     var tankWord = document.getElementById("tank-interface");
     if (!tankWord) return;
