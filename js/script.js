@@ -317,7 +317,14 @@
       tl.to(steps[steps.length - 1], { opacity: 0, y: -36, filter: "blur(6px)", duration: 0.35, ease: "power1.in" });
       if (rail) {
         gsap.set(rail, { maxWidth: "none" });
-        tl.to(rail, { left: "50%", xPercent: -50, top: "44%", yPercent: -50, width: "min(1100px, 92vw)", duration: 0.6, ease: "power2.inOut" }, "<");
+        tl.to(rail, {
+          left: "50%",
+          xPercent: -50,
+          y: function () { return pin.clientHeight * 0.44 - rail.offsetTop - rail.offsetHeight / 2; },
+          width: "min(1100px, 92vw)",
+          duration: 0.6,
+          ease: "power2.inOut",
+        }, "<");
       }
       tl.call(function () {
         railStops.forEach(function (s) { s.classList.add("is-done"); s.classList.remove("is-active"); });
