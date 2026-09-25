@@ -38,7 +38,7 @@
   --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
   --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --text-cartaz: clamp(72px, 16vw, 230px);
-  --text-display: clamp(40px, 5.5vw, 64px);
+  --text-display: clamp(40px, 5.5vw, 50px);
   --text-corpo: 18px;
   --text-dado: 14px;
   --text-micro: 11px;
@@ -475,7 +475,7 @@ section {
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto auto 1fr;
   align-content: start;
-  padding-top: 48px;
+  padding-top: 40px;
 }
 #sf-steps.js-sf .sf-heading { grid-row: 1; }
 #sf-steps.js-sf .sf-step {
@@ -484,6 +484,7 @@ section {
   align-self: start;
   margin-top: 0;
   opacity: 0;
+  
 }
 
 .sobre {
