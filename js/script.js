@@ -272,9 +272,10 @@
     var steps = pin ? [].slice.call(pin.querySelectorAll(".sf-step")) : [];
     if (!pin || !steps.length) return;
     var underlines = steps.map(function (el) { return el.querySelector(".sf-step__underline"); });
-    var isDesktop = window.matchMedia("(min-width: 1024px)").matches;
     if (reducedMotion) return;
-    if (isDesktop) {
+
+    ScrollTrigger.matchMedia({
+      "(min-width: 1024px)": function () {
       pin.classList.add("js-sf");
       var railTrace = document.getElementById("sf-rail-trace");
       var railStops = [].slice.call(pin.querySelectorAll(".sf-rail__stop"));
@@ -324,12 +325,24 @@
         if (rail) rail.classList.add("is-finale");
       }, [], "<");
       tl.to(finale, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "<0.3");
-    } else {
-      steps.forEach(function (el, i) {
+
+      return function () {
+        pin.classList.remove("js-sf");
+        if (rail) rail.classList.remove("is-finale");
+        railStops.forEach(function (s) { s.classList.remove("is-active", "is-done"); });
+        railDots.forEach(function (d) { d.classList.remove("is-active"); });
+        gsap.set(steps, { clearProps: "opacity,transform,filter" });
+        gsap.set(underlines, { clearProps: "transform" });
+        if (rail) gsap.set(rail, { clearProps: "all" });
+        if (finale) gsap.set(finale, { clearProps: "all" });
+      };
+    },
+      "(max-width: 1023px)": function () {
+      var triggers = steps.map(function (el, i) {
         var underline = underlines[i];
         gsap.set(underline, { scaleX: 0 });
         gsap.set(el, { opacity: 0, y: 16 });
-        ScrollTrigger.create({
+        return ScrollTrigger.create({
           trigger: el,
           start: "top 82%",
           once: true,
@@ -339,7 +352,13 @@
           },
         });
       });
-    }
+      return function () {
+        triggers.forEach(function (t) { t.kill(); });
+        gsap.set(steps, { clearProps: "opacity,transform" });
+        gsap.set(underlines, { clearProps: "transform" });
+      };
+      },
+    });
   })();
   (function sobreReveal() {
     var paragraphs = [].slice.call(document.querySelectorAll(".sobre__p"));
